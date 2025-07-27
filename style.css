@@ -40,12 +40,10 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 
-  /* التدرج الذهبي */
+  /* تدرج ذهبي ولمعة */
   background: linear-gradient(90deg, #e6c46c, #fff8d2, #e6c46c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* اللمعة والظل */
   text-shadow: 
     0 0 5px rgba(255, 255, 255, 0.1),
     0 0 10px rgba(255, 255, 255, 0.08),
@@ -101,5 +99,37 @@ footer a:hover {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ======= تحسينات للجوال فقط ======= */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 40px 15px;
+  }
+  .logo {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 15px;
+  }
+  .brand-name {
+    font-size: 28px;
+    letter-spacing: 2.5px;
+    margin: 10px 0;
+  }
+  .description {
+    font-size: 16px;
+    max-width: 90%;
+    padding: 0 10px;
+    line-height: 1.6;
+  }
+  .products-section {
+    flex-direction: column;
+    padding: 30px 15px;
+    gap: 20px;
+  }
+  .buy-button {
+    padding: 12px 25px;
+    font-size: 16px;
   }
 }
