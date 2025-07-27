@@ -35,7 +35,7 @@ body {
 
 /* اسم البراند بخط مزخرف وذهبي خفيف */
 .brand-name {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Alice', serif;
   font-size: 48px;
   color: #d4af37; /* ذهبي */
   margin: 10px 0;
@@ -43,16 +43,16 @@ body {
   font-weight: 300;
   text-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
 }
-
+/* خط الوصف Work Sans */
 .description {
-  font-family: 'Lora', serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.75); /* أبيض بخفة وشفافية */
   max-width: 600px;
   margin: 0 auto;
   font-weight: 300;
   line-height: 1.5;
-  white-space: pre-line; /* يحافظ على فواصل الأسطر */
+  white-space: pre-line;
 }
 /* كروت المنتجات */
 .products-section {
