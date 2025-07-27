@@ -45,13 +45,13 @@ body {
 }
 /* خط الوصف Work Sans */
 .description {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Lora', serif;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.75); /* أبيض بخفة وشفافية */
+  color: rgba(255, 255, 255, 0.75);
   max-width: 600px;
   margin: 0 auto;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.6;
   white-space: pre-line;
 }
 /* كروت المنتجات */
