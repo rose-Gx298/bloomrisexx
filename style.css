@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Lora', serif;
   background-color: #0b2c2d; /* أخضر أغمق وأفخم */
   color: #fff;
 }
@@ -33,21 +33,26 @@ body {
 }
 
 /* اسم البراند باللون الذهبي */
+/* اسم البراند بخط مزخرف وذهبي خفيف */
 .brand-name {
-  font-size: 36px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 48px;
   color: #d4af37; /* ذهبي */
   margin: 10px 0;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
+  font-weight: 300;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
 }
 
-/* وصف الموقع */
 .description {
-  font-size: 18px;
+  font-family: 'Lora', serif;
+  font-size: 20px;
   color: #e0e0e0;
   max-width: 600px;
   margin: 0 auto;
+  font-weight: 300;
+  line-height: 1.5;
 }
-
 /* كروت المنتجات */
 .products-section {
   padding: 50px 20px;
