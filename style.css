@@ -31,6 +31,7 @@ body {
 }
 
 .description {
+  /* إعدادات اللابتوب */
   font-family: 'Lora', serif;
   font-size: 18px;
   font-weight: 300;
@@ -40,7 +41,6 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 
-  /* تدرج ذهبي ولمعة */
   background: linear-gradient(90deg, #e6c46c, #fff8d2, #e6c46c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -48,6 +48,16 @@ body {
     0 0 5px rgba(255, 255, 255, 0.1),
     0 0 10px rgba(255, 255, 255, 0.08),
     1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* فقط للجوال */
+@media (max-width: 768px) {
+  .description {
+    font-size: 16px;
+    max-width: 90%;
+    padding: 0 10px;
+    line-height: 1.6;
+  }
 }
 
 .products-section {
