@@ -1,10 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #204d3b; /* أخضر أنيق */
-  color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
+  background-color: #0F3D3E; /* هذا لون أخضر غامق راقي وفخم، يشبه لون اللوغو */
+  color: #fff;
 }
 
 /* البلوك العلوي */
