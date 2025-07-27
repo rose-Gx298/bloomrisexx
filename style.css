@@ -2,59 +2,46 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Lora', serif;
-  background-color: #1A2421; /* اللون اللي طلبتيه */
+  background-color: #1A2421; /* الأخضر الفخم */
   color: #fff;
 }
 
-/* البلوك العلوي */
 .hero-section {
   padding: 80px 20px;
-  animation: fadeIn 2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
+  animation: fadeIn 2s ease-in-out;
 }
 
-/* اللوجو بشكل دائري وفي الوسط */
 .logo {
-  width: 160px;
-  height: 160px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   object-fit: cover;
-  overflow: hidden;
   border: 3px solid white;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   margin-bottom: 20px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-
-/* اسم البراند بخط مزخرف وذهبي خفيف */
 .brand-name {
   font-family: 'Alice', serif;
-  font-size: 48px;
-  color: #d4af37; /* ذهبي */
-  margin: 10px 0;
+  font-size: 40px;
+  color: #d4af37;
+  margin: 15px 0;
   letter-spacing: 4px;
-  font-weight: 300;
-  text-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
 }
-/* خط الوصف Work Sans */
+
 .description {
   font-family: 'Lora', serif;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.75);
-  max-width: 600px;
-  margin: 0 auto;
+  color: #ffffff;
   font-weight: 300;
-  line-height: 1.6;
-  white-space: pre-line;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
 }
-/* كروت المنتجات */
+
 .products-section {
   padding: 50px 20px;
   display: flex;
@@ -63,11 +50,10 @@ body {
   gap: 30px;
 }
 
-/* أزرار الشراء */
 .buy-button {
   display: inline-block;
   margin-top: 10px;
-  background-color: #d4af37; /* ذهبي */
+  background-color: #d4af37;
   color: #204d3b;
   padding: 10px 20px;
   text-decoration: none;
@@ -80,7 +66,6 @@ body {
   background-color: #b58d2b;
 }
 
-/* الفوتر */
 footer {
   padding: 30px;
   background-color: #18392d;
@@ -98,7 +83,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* أنميشن */
 @keyframes fadeIn {
   from {
     opacity: 0;
