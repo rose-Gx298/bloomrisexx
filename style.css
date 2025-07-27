@@ -33,13 +33,23 @@ body {
 .description {
   font-family: 'Lora', serif;
   font-size: 18px;
-  color: #ffffff;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.8;
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+  padding: 0 20px;
+
+  /* التدرج الذهبي */
+  background: linear-gradient(90deg, #e6c46c, #fff8d2, #e6c46c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* اللمعة والظل */
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.1),
+    0 0 10px rgba(255, 255, 255, 0.08),
+    1px 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .products-section {
