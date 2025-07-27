@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Lora', serif;
-  background-color: #0b2c2d; /* أخضر أغمق وأفخم */
+  background-color: #1A2421; /* اللون اللي طلبتيه */
   color: #fff;
 }
 
@@ -32,7 +32,7 @@ body {
   margin-right: auto;
 }
 
-/* اسم البراند باللون الذهبي */
+
 /* اسم البراند بخط مزخرف وذهبي خفيف */
 .brand-name {
   font-family: 'Great Vibes', cursive;
@@ -46,12 +46,13 @@ body {
 
 .description {
   font-family: 'Lora', serif;
-  font-size: 20px;
-  color: #e0e0e0;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.75); /* أبيض بخفة وشفافية */
   max-width: 600px;
   margin: 0 auto;
   font-weight: 300;
   line-height: 1.5;
+  white-space: pre-line; /* يحافظ على فواصل الأسطر */
 }
 /* كروت المنتجات */
 .products-section {
