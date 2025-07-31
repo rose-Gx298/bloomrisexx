@@ -2,27 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Products - BLOOM & RISE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bloom & Rise Products</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora:wght@300;400&display=swap" rel="stylesheet">
 </head>
-<body style="background-color: #fdfcf9;">
-  <a href="index.html" class="back-button">← Back</a>
+<body class="products-page">
 
-  <h2 class="products-title">Our Products</h2>
+  <!-- زر الرجوع مع جملة تحفيزية -->
+  <div class="top-bar">
+    <a href="index.html" class="back-button">⟵</a>
+    <p class="motivation">You are a flower that grows every day. Never underestimate yourself!</p>
+  </div>
 
+  <!-- المنتجات -->
   <div class="products-section">
-    <div class="product-card">
-      <img class="product-image" src="https://m.media-amazon.com/images/I/71H9-irrghL._SL1500_.jpg" alt="CeraVe Cleanser">
-      <div class="product-info">
-        <p><strong>CeraVe Hydrating Foaming Oil Cleanser</strong></p>
-        <p>Moisturizing Cleanser for Face & Body, For Dry to Very Dry Skin, Fragrance Free</p>
-        <p class="product-price">$12.37</p>
-        <p class="discount">-23%</p>
-        <a href="https://amzn.to/4ff6Ywl" class="shop-now" target="_blank">Shop Now</a>
+
+    <!-- مثال لمنتج -->
+    <div class="product-card" ondblclick="copyLink(this, 'https://amzn.to/4ff6Ywl')">
+      <img src="https://m.media-amazon.com/images/I/71H9-irrghL._SL1500_.jpg" alt="CeraVe Hydrating Foaming Oil Cleanser" class="product-image" />
+      <p class="product-name">CeraVe Hydrating Foaming Oil Cleanser</p>
+      <button class="discover-button" onclick="showDetails(
+        'https://m.media-amazon.com/images/I/71H9-irrghL._SL1500_.jpg',
+        'CeraVe Hydrating Foaming Oil Cleanser, Moisturizing Cleanser for Face & Body, Squalane Oil + Hyaluronic Acid + Ceramides, For Dry to Very Dry Skin, Fragrance Free & Residue Free, 8 FL Oz',
+        `Item Weight: 8 Ounces
+Item dimensions L x W x H: 1.33 x 2.79 x 6.77 inches
+Scent: Fragrance Free
+Age Range (Description): Adult
+
+About this item:
+• GENTLE CLEANSER: Gentle face wash formulated with hyaluronic acid, ceramides, squalane & triglycerides. Removes makeup, dirt, and excess oil without stripping moisture.
+• RINSE OIL FACE CLEANSER WITH WATER: Hydrating cleanser transforms from oil into soft foam, leaving skin hydrated without tightness.
+• CLEANSER FOR DRY SKIN: National Eczema Association accepted. Suitable for sensitive and eczema-prone skin.
+• 3 ESSENTIAL CERAMIDES: Help maintain the skin’s natural barrier.
+• DEVELOPED WITH DERMATOLOGISTS: Suitable for various skin types.`,
+        '$12.37',
+        '-23%',
+        'https://amzn.to/4ff6Ywl'
+      )">Discover Now</button>
+    </div>
+
+  </div>
+
+  <!-- نافذة التفاصيل -->
+  <div class="product-detail" id="product-detail">
+    <img src="" alt="Product Detail" class="detail-image" id="detail-img" />
+    <div class="detail-info">
+      <h2 id="detail-title"></h2>
+      <pre id="detail-description" style="white-space: pre-wrap;"></pre>
+      <div class="price-section">
+        <span class="price-new" id="price-new"></span>
+        <span class="discount" id="discount"></span>
       </div>
+      <a id="buy-link" class="buy-button" target="_blank" rel="noopener noreferrer">Buy Now</a>
+      <button class="close-button" onclick="closeDetails()">Close ✕</button>
     </div>
   </div>
+
+<script>
+  function copyLink(element, url) {
+    navigator.clipboard.writeText(url).then(() => {
+      const msg = document.createElement('span');
+      msg.innerText = 'Link copied!';
+      msg.className = 'copied-msg';
+      element.appendChild(msg);
+      setTimeout(() => msg.remove(), 2000);
+    });
+  }
+
+  function showDetails(img, title, description, priceNew, discount, buyLink) {
+    document.getElementById('detail-img').src = img;
+    document.getElementById('detail-title').innerText = title;
+    document.getElementById('detail-description').innerText = description;
+    document.getElementById('price-new').innerText = priceNew;
+    document.getElementById('discount').innerText = discount;
+    document.getElementById('buy-link').href = buyLink;
+    document.getElementById('product-detail').style.display = 'flex';
+  }
+
+  function closeDetails() {
+    document.getElementById('product-detail').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
