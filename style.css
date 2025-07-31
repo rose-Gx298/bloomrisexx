@@ -6,6 +6,7 @@ body {
   color: #fff;
 }
 
+/* الصفحة الرئيسية */
 .hero-section {
   padding: 80px 20px;
   text-align: center;
@@ -31,7 +32,6 @@ body {
 }
 
 .description {
-  /* إعدادات اللابتوب */
   font-family: 'Lora', serif;
   font-size: 18px;
   font-weight: 300;
@@ -50,40 +50,41 @@ body {
     1px 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-/* فقط للجوال */
-@media (max-width: 768px) {
-  .description {
-    font-size: 16px;
-    max-width: 90%;
-    padding: 0 10px;
-    line-height: 1.6;
+/* زر أنيق الصفحة الرئيسية */
+.explore-button {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  background-color: #d4af37; /* ذهبي */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  transition: all 0.3s ease;
+}
+
+.explore-button:hover {
+  background-color: #e8c861;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+  transform: scale(1.05);
+}
+
+/* تدرجات الصفحة */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.products-section {
-  padding: 50px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-}
-
-.buy-button {
-  display: inline-block;
-  margin-top: 10px;
-  background-color: #d4af37;
-  color: #204d3b;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 8px;
-  transition: background 0.3s;
-}
-
-.buy-button:hover {
-  background-color: #b58d2b;
-}
-
+/* الفوتر */
 footer {
   padding: 30px;
   background-color: #18392d;
@@ -101,18 +102,221 @@ footer a:hover {
   text-decoration: underline;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+/* ======= تحسينات للجوال فقط ======= */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 40px 15px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .logo {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 15px;
+  }
+  .brand-name {
+    font-size: 28px;
+    letter-spacing: 2.5px;
+    margin: 10px 0;
+  }
+  .description {
+    font-size: 16px;
+    max-width: 90%;
+    padding: 0 10px;
+    line-height: 1.6;
   }
 }
 
-/* ======= تحسينات للجوال فقط ======= */
+/* صفحة المنتجات */
+.products-page {
+  background-color: #1A2421;
+  color: #fff;
+  font-family: 'Lora', serif;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.back-button {
+  background: linear-gradient(145deg, #fff9e6, #d4af37);
+  color: #1A2421;
+  padding: 10px 15px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 10px #d4af37;
+  margin-right: 15px;
+  user-select: none;
+}
+
+.motivation {
+  font-size: 16px;
+  color: #f5f5dc;
+  font-style: italic;
+}
+
+.products-section {
+  padding: 50px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.product-card {
+  background-color: #22302b;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  text-align: center;
+  width: 250px;
+  position: relative;
+  cursor: pointer;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.product-name {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* زر اكتشف الآن */
+.discover-button {
+  background: linear-gradient(135deg, #e6c46c, #fff8d2);
+  color: #1a2421;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.discover-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+}
+
+/* رسالة تم النسخ */
+.copied-msg {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #d4af37;
+  color: #1a2421;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  user-select: none;
+}
+
+/* نافذة تفاصيل المنتج */
+.product-detail {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  background-color: #22302b;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  z-index: 1000;
+  gap: 30px;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  font-family: 'Lora', serif;
+}
+
+.detail-image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.detail-info {
+  flex: 1;
+  padding-left: 20px;
+  white-space: pre-wrap;
+}
+
+.detail-info h2 {
+  color: #d4af37;
+  margin-bottom: 10px;
+  font-family: 'Alice', serif;
+}
+
+.detail-info pre {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+}
+
+/* السعر الجديد الذهبي */
+.price-new {
+  color: #ffd700; /* ذهب */
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 0 0 6px #ffffffcc;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+/* نسبة التخفيض الأزرق */
+.discount {
+  color: #007bff; /* أزرق */
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 6px #ffffffcc;
+  vertical-align: middle;
+}
+
+/* زر شراء الآن */
+.buy-button {
+  display: inline-block;
+  background-color: #d4af37;
+  color: #204d3b;
+  padding: 12px 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+  transition: all 0.3s ease;
+}
+
+.buy-button:hover {
+  background-color: #b58d2b;
+  color: #153218;
+  text-shadow: 0 0 8px #ffffffaa;
+}
+
+/* زر إغلاق النافذة */
+.close-button {
+  margin-top: 15px;
+  background: transparent;
+  border: none;
+  color: #d4af37;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 0 0 5px #fff;
+  user-select: none;
+}
+
+/* تعديل للجوال */
 @media (max-width: 768px) {
   .hero-section {
     padding: 40px 15px;
@@ -141,5 +345,20 @@ footer a:hover {
   .buy-button {
     padding: 12px 25px;
     font-size: 16px;
+  }
+  .product-detail {
+    flex-direction: column;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    padding: 20px;
+  }
+  .detail-image {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 15px;
+  }
+  .detail-info {
+    padding-left: 0;
   }
 }
