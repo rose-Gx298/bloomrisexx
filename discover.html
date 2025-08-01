@@ -9,25 +9,43 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     
-  .disclosure-toggle {
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.15);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 0 auto 15px auto;
-    display: block;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    position: relative;
-  }
-  .disclosure-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-  }
-  .disclosure-toggle:active {
-    transform: scale(0.95);
-  }
+  <
+
+    .disclosure-toggle {
+      position: absolute;
+      top: 65px;
+      left: 10px;
+      width: 18px;
+      height: 18px;
+      background-color: rgba(212, 175, 55, 0.3);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: shakeUpDown 2s ease-in-out infinite;
+      box-shadow: 
+        0 0 6px rgba(212, 175, 55, 0.5),
+        inset 0 0 8px rgba(255, 223, 100, 0.4);
+      transition: background-color 0.3s ease;
+      z-index: 11;
+    }
+
+    .disclosure-toggle:hover {
+      background-color: rgba(245, 208, 97, 0.5);
+      box-shadow: 
+        0 0 10px rgba(245, 208, 97, 0.7),
+        inset 0 0 12px rgba(255, 223, 100, 0.6);
+    }
+
+    /* لا تنسى تحط @keyframes shakeUpDown إذا مش موجود */
+    @keyframes shakeUpDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
 
   .disclosure-text {
     max-width: 700px;
@@ -87,50 +105,7 @@
     0 0 15px rgba(255, 223, 100, 0.9);
 }
 
-    .disclosure-toggle {
-      position: absolute;
-      top: 65px;
-      left: 10px;
-      width: 25px;
-      height: 25px;
-      background-color: #d4af37;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      animation: shakeUpDown 2s ease-in-out infinite;
-      z-index: 11;
-      transition: background-color 0.3s ease;
-    }
-    @keyframes shakeUpDown {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-    .disclosure-toggle:hover {
-      background-color: #f5d061;
-    }
-
-    .disclosure-text {
-      max-width: 700px;
-      margin: 80px auto 0 auto;
-      font-size: 15px;
-      color: #fff8d2;
-      background-color: rgba(0,0,0,0.25);
-      padding: 15px 20px;
-      border-radius: 12px;
-      line-height: 1.6;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
-      display: none;
-      user-select: text;
-      text-align: right;
-      direction: rtl;
-      position: relative;
-      z-index: 9;
-    }
- 
+  
 
     /* نفس أسلوب اسم البراند في الصفحة الرئيسية */
     .brand-name {
