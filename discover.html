@@ -8,6 +8,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
+    
+  .disclosure-toggle {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 auto 15px auto;
+    display: block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+  }
+  .disclosure-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+  .disclosure-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .disclosure-text {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 15px;
+    color: #fff8d2;
+    background-color: rgba(0,0,0,0.25);
+    padding: 15px 20px;
+    border-radius: 12px;
+    line-height: 1.6;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+    display: none;
+    user-select: text;
+    text-align: right;
+    direction: ltr; /* لو نص عربي */
+  }
+
     body {
       background-color:#1A2421; /* نفس لون خلفية اللوجو */
       color: #fff8d2;
