@@ -40,14 +40,36 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 
-  /* تدرج ذهبي ولمعة */
   background: linear-gradient(90deg, #e6c46c, #fff8d2, #e6c46c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 
+  text-shadow:
     0 0 5px rgba(255, 255, 255, 0.1),
     0 0 10px rgba(255, 255, 255, 0.08),
     1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* زر اكتشفي ذهبي لامع */
+.discover-button {
+  display: inline-block;
+  margin-top: 30px;
+  background: linear-gradient(135deg, #f5d061, #d4af37, #f5d061);
+  color: #1a1a1a;
+  font-size: 18px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Alice', serif;
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.8);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.discover-button:hover {
+  background: linear-gradient(135deg, #d4af37, #f5d061, #d4af37);
+  color: #1a1a1a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 1);
 }
 
 .products-section {
@@ -102,7 +124,7 @@ footer a:hover {
   }
 }
 
-/* ======= تحسينات للجوال فقط ======= */
+/* تحسينات للجوال */
 @media (max-width: 768px) {
   .hero-section {
     padding: 40px 15px;
