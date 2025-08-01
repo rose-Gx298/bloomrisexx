@@ -18,21 +18,26 @@
       margin: 0;
       position: relative;
     }
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 22px;
-      color: #fff8d2;
-      text-decoration: none;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 8px 14px;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-    .back-button:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.7); /* أبيض شفاف */
+  text-decoration: none;
+  background: none;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, color 0.15s ease;
+  display: inline-block;
+}
+
+.back-button:active {
+  transform: scale(0.85);
+  color: rgba(255, 255, 255, 0.9);
+}
 
     /* نفس أسلوب اسم البراند في الصفحة الرئيسية */
     .brand-name {
@@ -45,7 +50,7 @@
   </style>
 </head>
 <body>
-  <a href="index.html" class="back-button">← Back</a>
+<a href="index.html" class="back-button" aria-label="back">←</a>
 
   <h1 class="brand-name">B L O O M & R I S E</h1>
 
