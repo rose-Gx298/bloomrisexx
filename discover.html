@@ -72,10 +72,20 @@
       display: inline-block;
       z-index: 10;
     }
-    .back-button:active {
-      transform: scale(0.85);
-      color: rgba(255, 255, 255, 0.9);
-    }
+  .back-button {
+  color: rgba(212, 175, 55, 0.7); /* ذهبي مع شفافية 70% */
+  text-shadow:
+    0 0 5px rgba(212, 175, 55, 0.9),    /* ظل ذهبي */
+    0 0 10px rgba(255, 223, 100, 0.7);  /* توهج ولمعة خفيفة */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.back-button:hover {
+  color: rgba(255, 223, 100, 0.9); /* لون ذهبي أفتح عند المرور */
+  text-shadow:
+    0 0 8px rgba(255, 223, 100, 1),
+    0 0 15px rgba(255, 223, 100, 0.9);
+}
 
     .disclosure-toggle {
       position: absolute;
