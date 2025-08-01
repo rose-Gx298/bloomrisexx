@@ -55,26 +55,72 @@
       margin: 0;
       position: relative;
     }
-.back-button {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 25px;
-  color: rgba(255, 255, 255, 0.7); /* أبيض شفاف */
-  text-decoration: none;
-  background: none;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.15s ease, color 0.15s ease;
-  display: inline-block;
-}
+ /* كود CSS هنا */
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 28px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      background: none;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease, color 0.15s ease;
+      display: inline-block;
+      z-index: 10;
+    }
+    .back-button:active {
+      transform: scale(0.85);
+      color: rgba(255, 255, 255, 0.9);
+    }
 
-.back-button:active {
-  transform: scale(0.85);
-  color: rgba(255, 255, 255, 0.9);
-}
+    .disclosure-toggle {
+      position: absolute;
+      top: 65px;
+      left: 10px;
+      width: 25px;
+      height: 25px;
+      background-color: #d4af37;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: shakeUpDown 2s ease-in-out infinite;
+      z-index: 11;
+      transition: background-color 0.3s ease;
+    }
+    @keyframes shakeUpDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+    .disclosure-toggle:hover {
+      background-color: #f5d061;
+    }
+
+    .disclosure-text {
+      max-width: 700px;
+      margin: 80px auto 0 auto;
+      font-size: 15px;
+      color: #fff8d2;
+      background-color: rgba(0,0,0,0.25);
+      padding: 15px 20px;
+      border-radius: 12px;
+      line-height: 1.6;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+      display: none;
+      user-select: text;
+      text-align: right;
+      direction: rtl;
+      position: relative;
+      z-index: 9;
+    }
+ 
 
     /* نفس أسلوب اسم البراند في الصفحة الرئيسية */
     .brand-name {
@@ -103,18 +149,15 @@
     const toggleBtn = document.querySelector('.disclosure-toggle');
     const disclosureText = document.getElementById('disclosure-text');
 
-    toggleBtn.addEventListener('click', () => {
-      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+    toggleBtn.addEventListener('mouseenter', () => {
+      disclosureText.style.display = 'block';
+      toggleBtn.setAttribute('aria-expanded', 'true');
+    });
 
-      if (disclosureText.style.display === 'block') {
-        disclosureText.style.display = 'none';
-      } else {
-        disclosureText.style.display = 'block';
-        disclosureText.focus();
-      }
+    toggleBtn.addEventListener('mouseleave', () => {
+      disclosureText.style.display = 'none';
+      toggleBtn.setAttribute('aria-expanded', 'false');
     });
   </script>
 </body>
 </html>
-
