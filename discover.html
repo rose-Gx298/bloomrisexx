@@ -97,6 +97,24 @@
   <h1 class="brand-name">B L O O M & R I S E</h1>
 
   <!-- هنا تقدر تضيفي محتوى آخر في الصفحة الثانية -->
+  <!-- المحتوى كامل للصفحة -->
 
+  <script>
+    const toggleBtn = document.querySelector('.disclosure-toggle');
+    const disclosureText = document.getElementById('disclosure-text');
+
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+
+      if (disclosureText.style.display === 'block') {
+        disclosureText.style.display = 'none';
+      } else {
+        disclosureText.style.display = 'block';
+        disclosureText.focus();
+      }
+    });
+  </script>
 </body>
 </html>
+
