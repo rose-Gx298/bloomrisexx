@@ -44,14 +44,36 @@
   transform: scale(0.85);
   color: rgba(255, 255, 255, 1);
 }
-    .brand-name {
-      font-family: 'Alice', serif;
-      font-size: 40px;
-      color: #d4af37;
-      margin: 15px 0 60px;
-      letter-spacing: 4px;
-    }
+   .brand-name {
+  font-family: 'Alice', serif;
+  font-size: 40px;
+  color: #d4af37;
+  margin: 15px 0 60px;
+  letter-spacing: 4px;
 
+  /* إضافة ظل ونقطة ضوء لامعة */
+  text-shadow: 
+    0 0 5px #f5d061,        /* لمعة ذهبية خفيفة */
+    0 0 10px #d4af37,       /* ظل ذهبي أكبر */
+    2px 2px 5px rgba(0, 0, 0, 0.7); /* ظل أسود لتعزيز العمق */
+  /* اختياري: تأثير توهج بسيط */
+  animation: glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 
+      0 0 5px #f5d061,
+      0 0 10px #d4af37,
+      2px 2px 5px rgba(0, 0, 0, 0.7);
+  }
+  to {
+    text-shadow: 
+      0 0 8px #fff3a0,
+      0 0 18px #ffd54f,
+      3px 3px 7px rgba(0, 0, 0, 0.8);
+  }
+}
     /* نجمة لامعة مكان الدائرة */
     .disclosure-toggle {
       position: absolute;
@@ -105,12 +127,19 @@
       direction: ltr;
     }
     @media (max-width: 768px) {
-  .brand-name {
+   .brand-name {
     font-size: 28px !important;
     letter-spacing: 2.5px !important;
     margin: 20px 0 40px !important;
     padding: 0 15px;
+    /* ممكن تقلل شوية من اللمعة لو بغيت */
+    text-shadow: 
+      0 0 4px #f5d061,
+      0 0 8px #d4af37,
+      1.5px 1.5px 3px rgba(0, 0, 0, 0.6);
+    animation-duration: 3s; /* أبطأ شوي الحركة على الجوال */
   }
+}
 
   .disclosure-text {
     margin: 80px 15px 0 15px !important;
