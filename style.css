@@ -26,37 +26,15 @@ body {
 }
 
 
-css
-Copy
-Edit
+
 .brand-name {
   font-family: 'Alice', serif;
   font-size: 40px;
+  color: #d4af37;
+  margin: 15px 0;
   letter-spacing: 4px;
-  background: linear-gradient(135deg, #f5d061, #d4af37, #f5d061);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  animation: glowGold 2s infinite alternate;
-  text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.3),
-    0 0 15px rgba(212, 175, 55, 0.4);
 }
 
-@keyframes glowGold {
-  0% {
-    text-shadow:
-      0 0 5px rgba(255, 255, 255, 0.2),
-      0 0 10px rgba(212, 175, 55, 0.3),
-      0 0 15px rgba(212, 175, 55, 0.4);
-  }
-  100% {
-    text-shadow:
-      0 0 10px rgba(255, 255, 255, 0.4),
-      0 0 20px rgba(212, 175, 55, 0.6),
-      0 0 30px rgba(212, 175, 55, 0.8);
-  }
-}
     .gold-gradient {
   background: linear-gradient(90deg, #f5d061, #d4af37, #f5d061);
   -webkit-background-clip: text;
