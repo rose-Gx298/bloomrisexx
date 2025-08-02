@@ -169,11 +169,13 @@ footer a:hover {
     letter-spacing: 2.5px;
     margin: 10px 0;
   }
+  
   .description {
-    font-size: 16px;
-    max-width: 90%;
-    padding: 0 10px;
-    line-height: 1.6;
+    font-size: 18px;
+    max-width: 95%;
+    padding: 10px 15px;
+    line-height: 1.8;
+    text-align: center;
   }
   .products-section {
     flex-direction: column;
