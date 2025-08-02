@@ -21,30 +21,43 @@
     }
 
     /* زر الرجوع الذهبي */
-.back-button {
-  position: absolute;
-  top: 15px;       /* يرفع السهم فوق */
-  left: 20px;      /* نفس مكانه الأفقي */
-  font-size: 25px;
-  color: rgba(255, 255, 255, 0.9); /* أبيض لامع */
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9); /* لمعة بيضاء */
-  text-decoration: none;
-  background: none;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.15s ease, color 0.15s ease, text-shadow 0.3s ease;
-  display: inline-block;
-}
-.back-button:hover {
-  transform: scale(1.05);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 1);
-}
-.back-button:active {
-  transform: scale(0.85);
-  color: rgba(255, 255, 255, 1);
-}
+  .back-button {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 25px;
+    color: #d4af37; /* ذهبي فخم */
+    text-shadow:
+      0 0 8px #f5d061,
+      0 0 15px #d4af37,
+      0 0 20px #f5d061;
+    text-decoration: none;
+    background: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.15s ease, color 0.15s ease, text-shadow 0.3s ease;
+    display: inline-block;
+  }
+
+  .back-button:hover {
+    transform: scale(1.1);
+    text-shadow:
+      0 0 12px #f5d061,
+      0 0 20px #d4af37,
+      0 0 30px #f5d061;
+    color: #f5d061;
+  }
+
+  .back-button:active {
+    transform: scale(0.85);
+    color: #d4af37;
+    text-shadow:
+      0 0 10px #d4af37,
+      0 0 15px #f5d061;
+  }
+
 .brand-name {
   font-family: 'Alice', serif;
   font-size: 40px;
