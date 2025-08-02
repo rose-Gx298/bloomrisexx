@@ -188,3 +188,13 @@ footer a:hover {
     font-size: 16px;
   }
 }
+.brand-name-discover {
+  font-family: 'Alice', serif;
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: 4px;
+  background: linear-gradient(to right, #d4af37, #f5d061);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
