@@ -18,13 +18,26 @@
     margin-bottom: 0;
   }
 
-
-@media (max-width: 600px) {
-  .gold-divider {
-    width: 50%;
-    margin: 40px auto 20px auto;
+  /* إضافة الخط تحت اسم البراند */
+  .gold-divider-discover {
+    display: block;
+    margin: 1rem auto 0 auto; /* مسافة تقريباً 1 ريم (16px) فوق الخط، ممكن تزيد قليلاً */
+    width: 60%;  /* عرض مناسب، غيره لو تحب */
+    max-width: 220px;
+    height: 2px; /* خط رقيق */
+    opacity: 0.85;
+    border-radius: 1px;
+    filter: drop-shadow(0 0 2px #d4af37);
   }
-} 
+
+  @media (max-width: 600px) {
+    .gold-divider-discover {
+      width: 80%;
+      max-width: 180px;
+      height: 1.5px;
+      margin-top: 0.8rem;
+    }
+  }
     /*<!-- jssasbjawsa-->*/
     body {
       background-color: #1A2421;
@@ -202,6 +215,23 @@
     height: 22px !important;
   }
 }
+    .gold-divider-discover {
+  display: block;
+  margin: 2rem auto 0; /* مسافة 3 سم تقريباً فوق الخط */
+  width: 60%;  /* عرض مناسب */
+  max-width: 220px; /* لا يتعدى 220 بكسل */
+  height: auto; /* يخلي ارتفاع الصورة حسب الحجم الأصلي */
+  opacity: 0.85; /* شفافية لطيفة */
+  filter: drop-shadow(0 0 2px #d4af37); /* ظل ذهبي خفيف */
+}
+
+@media (max-width: 600px) {
+  .gold-divider-discover {
+    width: 80%;
+    max-width: 180px;
+    margin-top: 1.5rem;
+  }
+}
   </style>
 </head>
 <body>
@@ -221,7 +251,10 @@
     Some links on this site are affiliate links, which means we may earn a commission if you make a purchase through them, at no extra cost to you. We carefully select and recommend only products we trust.
   </div>
 
-<h1 class="brand-name-discover">B L O O M & R I S E</h1>
+<div class="brand-wrapper">
+  <h1 class="brand-name-discover">B L O O M & R I S E</h1>
+  <img src="gold-line.png" alt="Decorative divider" class="gold-divider-discover" />
+</div>
 
  <!-- jssasbjawsa-->
 
