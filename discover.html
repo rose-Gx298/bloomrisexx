@@ -196,47 +196,67 @@
     height: 22px !important;
   }
 }
-.gold-divider-discover {
-  display: block;
-  margin: 2rem auto 0;
-  width: 60%;
-  max-width: 220px;
-  height: 6px; /* ارتفاع الخط أكبر */
-  background: linear-gradient(90deg, #d4af37 0%, #f5d061 50%, #d4af37 100%);
-  opacity: 1; /* بدون شفافية */
-  border-radius: 2px;
-  filter: drop-shadow(0 0 4px #d4af37);
+
+   .gold-divider-top,
+.gold-divider-bottom {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #f5d061, #d4af37, #f5d061);
+  border-radius: 3px;
+  box-shadow: 0 0 12px #d4af37;
+  opacity: 0.95;
+  animation: shimmerLine 3s infinite linear;
+  margin: 30px 0;
 }
-@media (max-width: 600px) {
-  .gold-divider-discover {
-    width: 80%;
-    max-width: 180px;
-    margin-top: 1.5rem;
-    height: 4px;
+
+@keyframes shimmerLine {
+  0% {
+    filter: brightness(1.3);
+  }
+  50% {
+    filter: brightness(1.7);
+  }
+  100% {
+    filter: brightness(1.3);
+  }
+}
+
+/* تحسينات للجوال */
+@media (max-width: 768px) {
+  .gold-divider-top,
+  .gold-divider-bottom {
+    height: 2.5px;      /* نص الارتفاع في الجوال */
+    margin: 20px 0;     /* تقليل المسافة الرأسية */
+    box-shadow: 0 0 8px #d4af37;
   }
 }
   </style>
 </head>
 <body>
 
+
+
+<div class="top-section">
   <!-- زر الرجوع -->
   <a href="index.html" class="back-button" aria-label="back">←</a>
 
-  <!-- نجمة disclosure -->
-  <button class="disclosure-toggle" 
-          aria-expanded="false" 
-          aria-controls="disclosure-text" 
-          aria-label="Show Amazon Disclosure">
-  </button>
+  <!-- النجمة -->
+  <button class="disclosure-toggle" aria-expanded="false" aria-controls="disclosure-text" aria-label="Show Amazon Disclosure"></button>
 
   <!-- نص الإفصاح -->
   <div id="disclosure-text" class="disclosure-text" role="region" aria-live="polite">
     Some links on this site are affiliate links, which means we may earn a commission if you make a purchase through them, at no extra cost to you. We carefully select and recommend only products we trust.
   </div>
 
+  <!-- خط فاصل فوق -->
+  <div class="gold-divider-top"></div>
 
+  <!-- اسم البراند -->
   <h1 class="brand-name-discover">B L O O M & R I S E</h1>
- 
+
+  <!-- خط فاصل تحت -->
+  <div class="gold-divider-bottom"></div>
+</div>
 
  <!-- jssasbjawsa-->
 
