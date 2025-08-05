@@ -29,7 +29,7 @@ body {
   font-size: 40px;
   color: #d4af37;
   margin: 15px 0;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
 }
 
     .gold-gradient {
@@ -166,7 +166,7 @@ footer a:hover {
   }
   .brand-name {
     font-size: 28px;
-    letter-spacing: 2.5px;
+    letter-spacing: 3px;
     margin: 10px 0;
   }
   
@@ -192,11 +192,16 @@ footer a:hover {
   font-family: 'Alice', serif;
   font-size: 36px;
   text-align: center;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   background: linear-gradient(to right, #d4af37, #f5d061);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
 }
 
+@media (max-width: 768px) {
 
+   .brand-name-discover {
+    letter-spacing: 3px !important;
+  }
+}
