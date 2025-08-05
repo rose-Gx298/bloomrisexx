@@ -26,6 +26,95 @@
       margin: 15px 0 60px;
     }
 
+    /* زر الرجوع الذهبي */
+    .back-button {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      font-size: 25px;
+      color: #d4af37; /* ذهبي فخم */
+      text-shadow:
+        0 0 8px #f5d061,
+        0 0 15px #d4af37,
+        0 0 20px #f5d061;
+      text-decoration: none;
+      background: none;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s ease, color 0.15s ease, text-shadow 0.3s ease;
+      display: inline-block;
+      z-index: 10;
+    }
+    .back-button:hover {
+      transform: scale(1.1);
+      text-shadow:
+        0 0 12px #f5d061,
+        0 0 20px #d4af37,
+        0 0 30px #f5d061;
+      color: #f5d061;
+    }
+    .back-button:active {
+      transform: scale(0.85);
+      color: #d4af37;
+      text-shadow:
+        0 0 10px #d4af37,
+        0 0 15px #f5d061;
+    }
+
+    /* Disclosure toggle (نجمة التصريح) */
+    .disclosure-toggle {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      width: 24px;
+      height: 24px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      animation: floatUpDown 2s infinite ease-in-out;
+    }
+    .disclosure-toggle::before {
+      content: "ℬ";
+      font-size: 22px;
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+      display: block;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+    .disclosure-toggle:hover::before {
+      transform: scale(1.1);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 1);
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-2px);
+      }
+    }
+
+    /* Disclosure text */
+    .disclosure-text {
+      max-width: 700px;
+      margin: 100px auto 0;
+      font-size: 15px;
+      color: #fff8d2;
+      background-color: rgba(0, 0, 0, 0.25);
+      padding: 15px 20px;
+      border-radius: 12px;
+      line-height: 1.6;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+      display: none;
+      user-select: text;
+      text-align: right;
+      direction: ltr;
+    }
+
     /* Search bar */
     .search-bar {
       max-width: 400px;
@@ -161,11 +250,40 @@
         height: 22px;
         left: 15px;
       }
+      .brand-name-discover {
+        font-size: 28px;
+        letter-spacing: 2.5px;
+        margin: 20px 0 40px;
+      }
     }
 
+    /* Accessibility helper */
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; 
+      width: 1px; 
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
+
+  <!-- زر الرجوع -->
+  <a href="index.html" class="back-button" aria-label="Back to home">←</a>
+
+  <!-- نجمة disclosure -->
+  <button class="disclosure-toggle" 
+          aria-expanded="false" 
+          aria-controls="disclosure-text" 
+          aria-label="Show Amazon Disclosure">
+  </button>
+
+  <!-- نص الإفصاح -->
+  <div id="disclosure-text" class="disclosure-text" role="region" aria-live="polite">
+    Some links on this site are affiliate links, which means we may earn a commission if you make a purchase through them, at no extra cost to you. We carefully select and recommend only products we trust.
+  </div>
 
   <h1 class="brand-name-discover">B L O O M & R I S E</h1>
 
@@ -190,22 +308,20 @@
     <!-- Products will appear here -->
   </div>
 
-  <!-- Accessibility helper -->
-  <style>
-    .visually-hidden {
-      position: absolute !important;
-      height: 1px; 
-      width: 1px; 
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap;
-    }
-  </style>
-
-  <!-- Algolia Search -->
   <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch.umd.min.js"></script>
 
   <script>
+    const toggle = document.querySelector('.disclosure-toggle');
+    const text = document.getElementById('disclosure-text');
+
+    toggle.addEventListener('mouseenter', () => {
+      text.style.display = 'block';
+    });
+
+    toggle.addEventListener('mouseleave', () => {
+      text.style.display = 'none';
+    });
+
     const APPLICATION_ID = "86N2D6VM5Z";
     const SEARCH_ONLY_API_KEY = "098e6699938861e039baa664b8ce4ef1";
     const INDEX_NAME = "products";
@@ -292,4 +408,4 @@
     performSearch('');
   </script>
 </body>
-</html>
+<
