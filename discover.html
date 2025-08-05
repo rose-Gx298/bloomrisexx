@@ -17,38 +17,54 @@
       margin: 0;
       position: relative;
     }
+
     .brand-name-discover {
       font-family: 'Alice', serif;
-      font-size: 2.4rem;
-      letter-spacing: 0.3em;
-      margin-bottom: 30px;
+      font-size: 40px;
       color: #d4af37;
-      text-shadow:
-        0 2px 5px rgba(212, 175, 55, 0.8),
-        0 0 10px #f5d061;
+      letter-spacing: 4px;
+      margin: 15px 0 60px;
     }
-    /* شريط البحث */
+
+    /* Search bar */
     .search-bar {
-      margin: 0 auto 25px;
       max-width: 400px;
+      margin: 0 auto 25px;
     }
-    .search-bar input {
+    .search-wrapper {
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      fill: #d4af37;
+      width: 20px;
+      height: 20px;
+    }
+    .search-wrapper input {
       width: 100%;
-      padding: 12px 20px;
+      padding: 10px 20px 10px 40px; /* space for icon */
       border-radius: 25px;
-      border: none;
+      border: 2px solid #d4af37;
+      background-color: #1A2421;
+      color: #fff8d2;
       font-size: 16px;
       font-family: 'Lora', serif;
-      background-color: #fff;
-      color: #1A2421;
-      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
-      transition: box-shadow 0.3s ease;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
     }
-    .search-bar input:focus {
+    .search-wrapper input::placeholder {
+      color: #d4af37aa;
+    }
+    .search-wrapper input:focus {
       outline: none;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.8);
+      box-shadow: 0 0 10px 2px #d4af37cc;
+      border-color: #f5d061;
     }
-    /* قائمة التصنيفات */
+
+    /* Categories */
     .categories {
       margin-bottom: 30px;
     }
@@ -69,7 +85,8 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(212, 175, 55, 0.8);
     }
-    /* عرض النتائج */
+
+    /* Results grid */
     .results {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
@@ -121,65 +138,96 @@
     .product-link:hover {
       background-color: #b58d2b;
     }
-    /* لا توجد نتائج */
+
+    /* No results */
     .no-results {
       font-size: 18px;
       color: #f5d061cc;
       margin-top: 50px;
     }
+
+    /* Responsive for mobile */
+    @media (max-width: 768px) {
+      .search-bar {
+        max-width: 90%;
+        margin-bottom: 20px;
+      }
+      .search-wrapper input {
+        font-size: 18px;
+        padding: 12px 22px 12px 45px;
+      }
+      .search-icon {
+        width: 22px;
+        height: 22px;
+        left: 15px;
+      }
+    }
+
   </style>
 </head>
 <body>
 
   <h1 class="brand-name-discover">B L O O M & R I S E</h1>
 
-  <!-- شريط البحث -->
+  <!-- Search bar -->
   <div class="search-bar">
-    <input type="search" id="search-input" placeholder="ابحث عن منتج..." aria-label="Search products" autocomplete="off" />
+    <label for="search-input" class="visually-hidden">Search products</label>
+    <div class="search-wrapper">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M10 2a8 8 0 105.293 14.293l4.707 4.707 1.414-1.414-4.707-4.707A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/>
+      </svg>
+      <input type="search" id="search-input" placeholder="Search for a product..." autocomplete="off" />
+    </div>
   </div>
 
-  <!-- قوائم التصنيفات -->
+  <!-- Categories -->
   <div class="categories" role="list" aria-label="Product categories">
-    <!-- الأزرار تُضاف ديناميكياً -->
+    <!-- Buttons added dynamically -->
   </div>
 
-  <!-- عرض النتائج -->
+  <!-- Results -->
   <div class="results" aria-live="polite" aria-atomic="true">
-    <!-- المنتجات تظهر هنا -->
+    <!-- Products will appear here -->
   </div>
 
-  <!-- مكتبة Algolia Search -->
+  <!-- Accessibility helper -->
+  <style>
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; 
+      width: 1px; 
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
+  </style>
+
+  <!-- Algolia Search -->
   <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch.umd.min.js"></script>
 
   <script>
-    // ====== اضعي بيانات Algolia هنا =======
-    const APPLICATION_ID = "86N2D6VM5Z"; // حطي Application ID حقك
-    const SEARCH_ONLY_API_KEY = "098e6699938861e039baa664b8ce4ef1"; // حطي Search-Only API Key حقك
-    const INDEX_NAME = "products"; // حطي اسم الـ Index اللي أنشأتيه
+    const APPLICATION_ID = "86N2D6VM5Z";
+    const SEARCH_ONLY_API_KEY = "098e6699938861e039baa664b8ce4ef1";
+    const INDEX_NAME = "products";
 
     const client = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
     const index = client.initIndex(INDEX_NAME);
 
-    // تخزين التصنيفات (Categories)
     let categoriesSet = new Set();
-
     const searchInput = document.getElementById('search-input');
     const categoriesContainer = document.querySelector('.categories');
     const resultsContainer = document.querySelector('.results');
+    let activeCategory = null;
 
-    let activeCategory = null; // التصنيف المختار حاليا
-
-    // دالة عرض المنتجات
     function renderResults(hits) {
       resultsContainer.innerHTML = '';
 
       if (hits.length === 0) {
-        resultsContainer.innerHTML = `<p class="no-results">لم يتم العثور على نتائج</p>`;
+        resultsContainer.innerHTML = `<p class="no-results">No results found</p>`;
         return;
       }
 
       hits.forEach(item => {
-        // تجميع التصنيفات
         if (item.category) categoriesSet.add(item.category);
 
         const productHTML = `
@@ -187,7 +235,7 @@
             ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image" />` : ''}
             <h3 class="product-name">${item.name}</h3>
             <p class="product-description">${item.description || ''}</p>
-            ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener" class="product-link">تسوق الآن</a>` : ''}
+            ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener" class="product-link">Shop Now</a>` : ''}
           </div>
         `;
         resultsContainer.insertAdjacentHTML('beforeend', productHTML);
@@ -196,14 +244,11 @@
       renderCategories();
     }
 
-    // دالة عرض قوائم التصنيفات
     function renderCategories() {
       categoriesContainer.innerHTML = '';
 
-      // "كل التصنيفات" زر
       const allBtn = document.createElement('button');
-      allBtn.textContent = 'كل التصنيفات';
-      allBtn.classList.add('active');
+      allBtn.textContent = 'All Categories';
       if (activeCategory === null) {
         allBtn.classList.add('active');
       }
@@ -214,7 +259,6 @@
       });
       categoriesContainer.appendChild(allBtn);
 
-      // أزرار التصنيفات حسب البيانات اللي عندنا
       Array.from(categoriesSet).sort().forEach(cat => {
         const btn = document.createElement('button');
         btn.textContent = cat;
@@ -227,29 +271,25 @@
       });
     }
 
-    // تنفيذ البحث مع فلترة التصنيف
     function performSearch(query) {
       const filters = activeCategory ? `category:"${activeCategory}"` : '';
 
       index.search(query, { filters })
         .then(({ hits }) => {
-          categoriesSet.clear(); // نعيد ملئ التصنيفات من جديد
+          categoriesSet.clear();
           renderResults(hits);
         })
         .catch(err => {
           console.error(err);
-          resultsContainer.innerHTML = `<p class="no-results">خطأ في البحث. حاول مرة أخرى.</p>`;
+          resultsContainer.innerHTML = `<p class="no-results">Error while searching. Please try again.</p>`;
         });
     }
 
-    // البحث التفاعلي أثناء الكتابة
     searchInput.addEventListener('input', (e) => {
       performSearch(e.target.value);
     });
 
-    // تحميل أولي للبيانات بدون فلترة
     performSearch('');
-
   </script>
 </body>
 </html>
