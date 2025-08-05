@@ -386,19 +386,30 @@
       });
     }
 
-    function performSearch(query) {
-      const filters = activeCategory ? `category:"${activeCategory}"` : '';
+function performSearch(query) {
+  const filters = activeCategory ? `category:"${activeCategory}"` : '';
 
-      index.search(query, { filters })
-        .then(({ hits }) => {
-          categoriesSet.clear();
-          renderResults(hits);
-        })
-        .catch(err => {
-          console.error(err);
-          resultsContainer.innerHTML = `<p class="no-results">Error while searching. Please try again.</p>`;
-        });
-    }
+  index.search(query, { filters })
+    .then(({ hits }) => {
+      categoriesSet.clear();
+
+      // عرض رسالة "لا توجد نتائج" فقط إذا المستخدم كتب شيء
+      if (hits.length === 0 && query.trim() !== '') {
+        resultsContainer.innerHTML = `<p class="no-results">No results found</p>`;
+        return;
+      }
+
+      renderResults(hits);
+    })
+    .catch(err => {
+      console.error(err);
+      resultsContainer.innerHTML = `<p class="no-results">Error while searching. Please try again.</p>`;
+    });
+}
+
+// إزالة البحث الفارغ عند التحميل
+// performSearch('');
+
 
     searchInput.addEventListener('input', (e) => {
       performSearch(e.target.value);
