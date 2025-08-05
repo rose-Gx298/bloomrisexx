@@ -29,7 +29,7 @@ body {
   font-size: 40px;
   color: #d4af37;
   margin: 15px 0;
-  letter-spacing: 6px;
+  letter-spacing: 8px;
 }
 
     .gold-gradient {
@@ -192,7 +192,7 @@ footer a:hover {
   font-family: 'Alice', serif;
   font-size: 36px;
   text-align: center;
-  letter-spacing: 6px;
+  letter-spacing: 8px;
   background: linear-gradient(to right, #d4af37, #f5d061);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
