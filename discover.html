@@ -1,24 +1,15 @@
 
+html
+Copy
+Edit
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Discover - Bloom & Rise</title>
   <link href="https://fonts.googleapis.com/css2?family=Alice&family=Lora:wght@300;400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
   <style>
-     /*<!-- jssasbjawsa-->*/
-  .brand-name-discover {
-    font-family: 'Alice', serif;
-    font-size: 2.4rem;
-    text-align: center;
-    letter-spacing: 0.3em;
-    margin-bottom: 0;
-  }
-
-
-    /*<!-- jssasbjawsa-->*/
     body {
       background-color: #1A2421;
       color: #fff8d2;
@@ -29,207 +20,239 @@
       margin: 0;
       position: relative;
     }
-
-    /* زر الرجوع الذهبي */
-  .back-button {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    font-size: 25px;
-    color: #d4af37; /* ذهبي فخم */
-    text-shadow:
-      0 0 8px #f5d061,
-      0 0 15px #d4af37,
-      0 0 20px #f5d061;
-    text-decoration: none;
-    background: none;
-    padding: 0;
-    border: none;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.15s ease, color 0.15s ease, text-shadow 0.3s ease;
-    display: inline-block;
-  }
-
-  .back-button:hover {
-    transform: scale(1.1);
-    text-shadow:
-      0 0 12px #f5d061,
-      0 0 20px #d4af37,
-      0 0 30px #f5d061;
-    color: #f5d061;
-  }
-
-  .back-button:active {
-    transform: scale(0.85);
-    color: #d4af37;
-    text-shadow:
-      0 0 10px #d4af37,
-      0 0 15px #f5d061;
-  }
-
-.brand-name {
-  font-family: 'Alice', serif;
-  font-size: 40px;
-  color: #d4af37; 
-  margin: 15px 0 60px;
-  letter-spacing: 4px;
-
-  /* ظل أبيض خفيف تحت الحروف */
-  text-shadow: 
-    0 2px 5px rgba(255, 255, 255, 0.7),  /* لمعة بيضاء أسفل */
-    0 4px 6px rgba(0, 0, 0, 0.6);        /* ظل أسود لإبراز الاسم */
-  
-  /* حركة لمعة خفيفة */
-  animation: glowWhite 3s ease-in-out infinite alternate;
-}
-
-
-@keyframes glowWhite {
-  from {
-    text-shadow: 
-      0 2px 5px rgba(255, 255, 255, 0.5),
-      0 4px 6px rgba(0, 0, 0, 0.6);
-  }
-  to {
-    text-shadow: 
-      0 2px 10px rgba(255, 255, 255, 0.9),
-      0 4px 8px rgba(0, 0, 0, 0.8);
-  }
-}
-    /* نجمة لامعة مكان الدائرة */
-    .disclosure-toggle {
-      position: absolute;
-      top: 15px;
-      right: 18px;
-      width: 24px;
-      height: 24px;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 10;
-      animation: floatUpDown 2s infinite ease-in-out;
-    }
-
-    .disclosure-toggle::before {
-      content: "ℬ";
-      font-size: 22px;
-      color: #ffffff;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-      display: block;
-      transition: transform 0.3s ease, text-shadow 0.3s ease;
-    }
-
-    .disclosure-toggle:hover::before {
-      transform: scale(1.1);
-      text-shadow: 0 0 12px rgba(255, 255, 255, 1);
-    }
-
-    @keyframes floatUpDown {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-2px);
-      }
-    }
-
-    .disclosure-text {
-      max-width: 700px;
-      margin: 100px auto 0;
-      font-size: 15px;
-      color: #fff8d2;
-      background-color: rgba(0, 0, 0, 0.25);
-      padding: 15px 20px;
-      border-radius: 12px;
-      line-height: 1.6;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
-      display: none;
-      user-select: text;
-      text-align: right;
-      direction: ltr;
-    }
-    @media (max-width: 768px) {
-   .brand-name {
-    font-size: 28px !important;
-    letter-spacing: 2.5px !important;
-    margin: 20px 0 40px !important;
-    padding: 0 15px;
-    /* ممكن تقلل شوية من اللمعة لو بغيت */
-    text-shadow: 
-      0 0 4px #f5d061,
-      0 0 8px #d4af37,
-      1.5px 1.5px 3px rgba(0, 0, 0, 0.6);
-    animation-duration: 3s; /* أبطأ شوي الحركة على الجوال */
-  }
     .brand-name-discover {
-    font-size: 28px !important;
-    letter-spacing: 2.5px !important; /* نفس التباعد حق الصفحة الرئيسية */
-    margin: 20px 0 40px !important;
-    padding: 0 15px;
-    /* حذف تأثير اللمعان هنا أيضًا */
-    text-shadow:
-       0 0 4px #f5d061,
-      0 0 8px #d4af37,
-  }
-}
-
-  .disclosure-text {
-    margin: 80px 15px 0 15px !important;
-    font-size: 14px !important;
-    max-width: 90% !important;
-    text-align: center !important;
-  }
-
-  .back-button {
-    top: 15px !important;
-    left: 15px !important;
-    font-size: 22px !important;
-  }
-
-  .disclosure-toggle {
-    top: 15px !important;
-    right: 15px !important; /* لو حطيتي النجمة على اليمين */
-    left: auto !important;
-    width: 22px !important;
-    height: 22px !important;
-  }
-}
+      font-family: 'Alice', serif;
+      font-size: 2.4rem;
+      letter-spacing: 0.3em;
+      margin-bottom: 30px;
+      color: #d4af37;
+      text-shadow:
+        0 2px 5px rgba(212, 175, 55, 0.8),
+        0 0 10px #f5d061;
+    }
+    /* شريط البحث */
+    .search-bar {
+      margin: 0 auto 25px;
+      max-width: 400px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: none;
+      font-size: 16px;
+      font-family: 'Lora', serif;
+      background-color: #fff;
+      color: #1A2421;
+      box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+      transition: box-shadow 0.3s ease;
+    }
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.8);
+    }
+    /* قائمة التصنيفات */
+    .categories {
+      margin-bottom: 30px;
+    }
+    .categories button {
+      background: linear-gradient(135deg, #f5d061, #d4af37);
+      color: #1A2421;
+      font-family: 'Alice', serif;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .categories button:hover,
+    .categories button.active {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.8);
+    }
+    /* عرض النتائج */
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 25px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .product-card {
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+      transition: transform 0.2s;
+    }
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+    }
+    .product-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .product-name {
+      font-family: 'Alice', serif;
+      font-size: 18px;
+      color: #d4af37;
+      margin: 0 0 8px 0;
+    }
+    .product-description {
+      font-size: 14px;
+      color: #fff8d2cc;
+      margin-bottom: 10px;
+    }
+    .product-link {
+      display: inline-block;
+      background-color: #d4af37;
+      color: #1a1a1a;
+      padding: 8px 15px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: 'Alice', serif;
+      transition: background-color 0.3s;
+    }
+    .product-link:hover {
+      background-color: #b58d2b;
+    }
+    /* لا توجد نتائج */
+    .no-results {
+      font-size: 18px;
+      color: #f5d061cc;
+      margin-top: 50px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- زر الرجوع -->
-  <a href="index.html" class="back-button" aria-label="back">←</a>
+  <h1 class="brand-name-discover">B L O O M & R I S E</h1>
 
-  <!-- نجمة disclosure -->
-  <button class="disclosure-toggle" 
-          aria-expanded="false" 
-          aria-controls="disclosure-text" 
-          aria-label="Show Amazon Disclosure">
-  </button>
-
-  <!-- نص الإفصاح -->
-  <div id="disclosure-text" class="disclosure-text" role="region" aria-live="polite">
-    Some links on this site are affiliate links, which means we may earn a commission if you make a purchase through them, at no extra cost to you. We carefully select and recommend only products we trust.
+  <!-- شريط البحث -->
+  <div class="search-bar">
+    <input type="search" id="search-input" placeholder="ابحث عن منتج..." aria-label="Search products" autocomplete="off" />
   </div>
 
-<h1 class="brand-name-discover">B L O O M & R I S E</h1>
-<!-- jssasbjawsa-->
+  <!-- قوائم التصنيفات -->
+  <div class="categories" role="list" aria-label="Product categories">
+    <!-- الأزرار تُضاف ديناميكياً -->
+  </div>
 
+  <!-- عرض النتائج -->
+  <div class="results" aria-live="polite" aria-atomic="true">
+    <!-- المنتجات تظهر هنا -->
+  </div>
+
+  <!-- مكتبة Algolia Search -->
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch.umd.min.js"></script>
 
   <script>
-    const toggle = document.querySelector('.disclosure-toggle');
-    const text = document.getElementById('disclosure-text');
+    // ====== اضعي بيانات Algolia هنا =======
+    const APPLICATION_ID = "86N2D6VM5Z"; // حطي Application ID حقك
+    const SEARCH_ONLY_API_KEY = "098e6699938861e039baa664b8ce4ef1"; // حطي Search-Only API Key حقك
+    const INDEX_NAME = "products"; // حطي اسم الـ Index اللي أنشأتيه
 
-    toggle.addEventListener('mouseenter', () => {
-      text.style.display = 'block';
+    const client = algoliasearch(APPLICATION_ID, SEARCH_ONLY_API_KEY);
+    const index = client.initIndex(INDEX_NAME);
+
+    // تخزين التصنيفات (Categories)
+    let categoriesSet = new Set();
+
+    const searchInput = document.getElementById('search-input');
+    const categoriesContainer = document.querySelector('.categories');
+    const resultsContainer = document.querySelector('.results');
+
+    let activeCategory = null; // التصنيف المختار حاليا
+
+    // دالة عرض المنتجات
+    function renderResults(hits) {
+      resultsContainer.innerHTML = '';
+
+      if (hits.length === 0) {
+        resultsContainer.innerHTML = `<p class="no-results">لم يتم العثور على نتائج</p>`;
+        return;
+      }
+
+      hits.forEach(item => {
+        // تجميع التصنيفات
+        if (item.category) categoriesSet.add(item.category);
+
+        const productHTML = `
+          <div class="product-card">
+            ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image" />` : ''}
+            <h3 class="product-name">${item.name}</h3>
+            <p class="product-description">${item.description || ''}</p>
+            ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener" class="product-link">تسوق الآن</a>` : ''}
+          </div>
+        `;
+        resultsContainer.insertAdjacentHTML('beforeend', productHTML);
+      });
+
+      renderCategories();
+    }
+
+    // دالة عرض قوائم التصنيفات
+    function renderCategories() {
+      categoriesContainer.innerHTML = '';
+
+      // "كل التصنيفات" زر
+      const allBtn = document.createElement('button');
+      allBtn.textContent = 'كل التصنيفات';
+      allBtn.classList.add('active');
+      if (activeCategory === null) {
+        allBtn.classList.add('active');
+      }
+      allBtn.addEventListener('click', () => {
+        activeCategory = null;
+        searchInput.value = '';
+        performSearch('');
+      });
+      categoriesContainer.appendChild(allBtn);
+
+      // أزرار التصنيفات حسب البيانات اللي عندنا
+      Array.from(categoriesSet).sort().forEach(cat => {
+        const btn = document.createElement('button');
+        btn.textContent = cat;
+        if (activeCategory === cat) btn.classList.add('active');
+        btn.addEventListener('click', () => {
+          activeCategory = cat;
+          performSearch(searchInput.value);
+        });
+        categoriesContainer.appendChild(btn);
+      });
+    }
+
+    // تنفيذ البحث مع فلترة التصنيف
+    function performSearch(query) {
+      const filters = activeCategory ? `category:"${activeCategory}"` : '';
+
+      index.search(query, { filters })
+        .then(({ hits }) => {
+          categoriesSet.clear(); // نعيد ملئ التصنيفات من جديد
+          renderResults(hits);
+        })
+        .catch(err => {
+          console.error(err);
+          resultsContainer.innerHTML = `<p class="no-results">خطأ في البحث. حاول مرة أخرى.</p>`;
+        });
+    }
+
+    // البحث التفاعلي أثناء الكتابة
+    searchInput.addEventListener('input', (e) => {
+      performSearch(e.target.value);
     });
 
-    toggle.addEventListener('mouseleave', () => {
-      text.style.display = 'none';
-    });
+    // تحميل أولي للبيانات بدون فلترة
+    performSearch('');
+
   </script>
-
 </body>
 </html>
