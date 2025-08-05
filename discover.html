@@ -386,6 +386,8 @@
       });
     }
 
+let searchUsed = false; // متغير لتتبع إذا المستخدم بحث أو اختار تصنيف
+
 function performSearch(query) {
   const filters = activeCategory ? `category:"${activeCategory}"` : '';
 
@@ -393,8 +395,12 @@ function performSearch(query) {
     .then(({ hits }) => {
       categoriesSet.clear();
 
-      // عرض رسالة "لا توجد نتائج" فقط إذا المستخدم كتب شيء
-      if (hits.length === 0 && query.trim() !== '') {
+      if (!searchUsed) {
+        resultsContainer.innerHTML = ''; // لا تعرض شيء إذا المستخدم ما بحث
+        return;
+      }
+
+      if (hits.length === 0) {
         resultsContainer.innerHTML = `<p class="no-results">No results found</p>`;
         return;
       }
@@ -407,15 +413,10 @@ function performSearch(query) {
     });
 }
 
-// إزالة البحث الفارغ عند التحميل
-// performSearch('');
-
-
-    searchInput.addEventListener('input', (e) => {
-      performSearch(e.target.value);
-    });
-
-    performSearch('');
+searchInput.addEventListener('input', (e) => {
+  searchUsed = true;
+  performSearch(e.target.value);
+});
   </script>
 </body>
 </html>
