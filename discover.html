@@ -189,6 +189,10 @@
       padding: 15px;
       box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
       transition: transform 0.2s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .product-card:hover {
       transform: scale(1.03);
@@ -200,17 +204,25 @@
       object-fit: cover;
       border-radius: 10px;
       margin-bottom: 10px;
+      flex-shrink: 0;
     }
     .product-name {
       font-family: 'Alice', serif;
       font-size: 18px;
       color: #d4af37;
       margin: 0 0 8px 0;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .product-description {
       font-size: 14px;
       color: #fff8d2cc;
       margin-bottom: 10px;
+      max-height: 3em; /* سطرين فقط */
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .product-link {
       display: inline-block;
@@ -222,26 +234,26 @@
       font-weight: bold;
       font-family: 'Alice', serif;
       transition: background-color 0.3s;
+      margin-top: auto;
+      align-self: flex-start;
     }
     .product-link:hover {
       background-color: #b58d2b;
     }
-
-    /* زر رؤية المزيد */
-    .see-more-button {
-      background-color: transparent;
+    .see-more-btn {
+      margin-top: 8px;
+      background: none;
       border: none;
-      color: #d4af37;
+      color: #f5d061;
+      cursor: pointer;
       font-family: 'Alice', serif;
       font-size: 14px;
-      cursor: pointer;
-      padding: 0;
-      margin-bottom: 10px;
       text-decoration: underline;
-      display: inline-block;
+      padding: 0;
+      align-self: flex-start;
     }
-    .see-more-button:hover {
-      color: #b58d2b;
+    .see-more-btn:hover {
+      color: #d4af37;
     }
 
     /* No results */
@@ -249,6 +261,7 @@
       font-size: 18px;
       color: #f5d061cc;
       margin-top: 50px;
+      text-align: center;
     }
 
     /* Responsive for mobile */
@@ -273,119 +286,112 @@
       }
     }
 
-    /* Accessibility helper */
-    .visually-hidden {
-      position: absolute !important;
-      height: 1px; 
-      width: 1px; 
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap;
-    }
-
-    /* مودال المنتج */
+    /* Modal styles */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.75);
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      padding: 20px;
+      box-sizing: border-box;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-
+    .modal-overlay.show {
+      visibility: visible;
+      opacity: 1;
+    }
     .modal-content {
-      background: #fff;
-      color: #1a1a1a;
-      width: 90%;
+      background: #272f24;
+      color: #fff8d2;
       max-width: 600px;
-      max-height: 85vh;
-      overflow-y: auto;
+      width: 100%;
       border-radius: 12px;
       padding: 25px 30px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.9);
       position: relative;
-      text-align: left;
+      max-height: 80vh;
+      overflow-y: auto;
+      text-align: right;
+      direction: rtl;
       font-family: 'Lora', serif;
     }
-
-    .modal-close-button {
-      position: absolute;
-      top: 12px;
-      right: 15px;
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #333;
-      font-weight: bold;
-      line-height: 1;
-      transition: color 0.3s;
-    }
-
-    .modal-close-button:hover {
+    .modal-content h2 {
+      font-family: 'Alice', serif;
       color: #d4af37;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+      direction: ltr;
+      white-space: normal;
     }
-
     .modal-images {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      overflow-x: auto;
+      gap: 12px;
+      margin-bottom: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-
     .modal-images img {
-      height: 100px;
+      max-height: 100px;
       border-radius: 8px;
       object-fit: cover;
       cursor: pointer;
-      border: 2px solid transparent;
-      transition: border-color 0.3s;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.7);
+      transition: transform 0.2s;
+      width: auto;
+      max-width: 30%;
     }
-
-    .modal-images img:hover,
-    .modal-images img.active {
-      border-color: #d4af37;
+    .modal-images img:hover {
+      transform: scale(1.1);
     }
-
     .modal-description {
-      font-size: 15px;
-      margin-bottom: 25px;
+      font-size: 14px;
       line-height: 1.5;
+      margin-bottom: 20px;
+      text-align: left;
+      direction: ltr;
+      color: #fff8d2cc;
       white-space: pre-wrap;
     }
-
     .modal-shop-button {
-      display: inline-block;
       background-color: #d4af37;
       color: #1a1a1a;
-      padding: 12px 25px;
-      border-radius: 8px;
-      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 10px;
       font-weight: bold;
       font-family: 'Alice', serif;
+      text-decoration: none;
+      display: block;
+      max-width: 200px;
+      margin: 0 auto;
       transition: background-color 0.3s;
+      text-align: center;
     }
-
     .modal-shop-button:hover {
       background-color: #b58d2b;
     }
-
-    /* اجعل المودال متجاوب */
-    @media (max-width: 480px) {
-      .modal-content {
-        padding: 15px 20px;
-      }
-      .modal-images img {
-        height: 70px;
-      }
-      .modal-shop-button {
-        width: 100%;
-        text-align: center;
-      }
+    #modal-close {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      background: none;
+      border: none;
+      font-size: 30px;
+      color: #d4af37;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    #modal-close:hover {
+      color: #f5d061;
     }
 
   </style>
@@ -431,9 +437,9 @@
   </div>
 
   <!-- Modal container (hidden by default) -->
-  <div id="product-modal" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" aria-describedby="modal-description">
+  <div id="product-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-product-name" style="display:none;">
     <div class="modal-content">
-      <button id="modal-close" aria-label="Close modal" class="modal-close-button">&times;</button>
+      <button id="modal-close" aria-label="Close modal">&times;</button>
       <h2 id="modal-product-name"></h2>
       <div id="modal-images" class="modal-images"></div>
       <div id="modal-description" class="modal-description"></div>
@@ -468,6 +474,36 @@
     const resultsContainer = document.querySelector('.results');
     let activeCategory = null;
 
+    // بيانات إضافية للمنتجات - الصور الإضافية والتفاصيل الكاملة وروابط الأفلييت
+    const extraProductData = {
+      "Korean Glass Glow Collagen Jelly Cream": {
+        extraImages: [
+          "https://m.media-amazon.com/images/I/71+OEoOZrDL._SL1500_.jpg",
+          "https://m.media-amazon.com/images/I/7143+0DVD-L._SL1500_.jpg"
+        ],
+        fullDescription: `EVEN OUT UNEVEN SKIN TONE – Unlock the power of a transparent collagen jelly cream designed to specifically target and correct uneven skin tone. Reveal a more harmonious, luminous complexion for a naturally smooth and radiant look
+GLASS GLOW SKIN - Discover a transparent collagen jelly cream offering anti-aging benefits. Enhance facial contours, promote firmness, and achieve a polished, glowing complexion effortlessly.
+PRODUCT BENEFITS - Instantly experience tightened, radiant skin with the 'Korean Glass Glow' effect post-application. Dermatologist-tested, low-irritating, silicone-free, with a skin-friendly pH of 5.69–7.69 and no artificial colorants.
+KEY INGREDIENTS - Hydrolyzed Collagen: Smaller segments enable better skin absorption, preserving firmness and elasticity, and Niacinamide (Vitamin B3) enhances the skin's barrier function and boosts hydration for improved texture.
+DERMATOLOGIST TESTED - Skin elasticity 1.793% improved and Sagging skin 2.488% improved after 24hr.
+HOW TO APPLY - Apply a quarter amount of jelly cream morning and evening to face and décolletage (neck & chest), after applying targeted serums that address your individual skin concerns.`,
+        affiliateLink: "https://amzn.to/4m5Ipoe"
+      },
+      "Hydrogel Eye Masks": {
+        extraImages: [
+          "https://m.media-amazon.com/images/I/61Z5pjKIUSL._SL1350_.jpg",
+          "https://m.media-amazon.com/images/I/51GlzUeH04L._SL1080_.jpg",
+          "https://m.media-amazon.com/images/I/61Ok7HOHIqL._SL1080_.jpg"
+        ],
+        fullDescription: `Hydrogel Eye Masks for Men & Women: A water-soluble gel-type eye patch with a concentration of high-quality ingredients with non-slip technology for intensive eye care
+Hyaluronic Acid: High-quality Hyaluronic Acid, this ingredient is famous for providing a high moisture effect maintaining hydration and vibrant-looking skin, and also creating a protective barrier that holds moisture in throughout the day
+Solution for Tired Eyes: Watery solution with an abundance of the essence for intensive care maximizing the treatment in the surface area. Provides a cooling sense, relieves fatigue around the eyes, and hydrates the skin for an anti-aging effect
+Provide Nutrition to Areas Around Eyes: Low irritation formula patches, just apply the eye patch between 15-20 minutes and allow your skin to absorb all the ingredients and nutrients to obtain moist, soothing, and more resilient skin
+Extra Usage Tip: You can also apply the Hydrogel Patches at the neck, around the mouth & forehead as an anti-wrinkle and dryness solution since they will adhere to any part you apply them to allow the skin to absorb all the ingredients targeting the wish area and obtaining the same benefits listed above`,
+        affiliateLink: "https://amzn.to/4okt0lk"
+      }
+    };
+
     function renderResults(hits) {
       resultsContainer.innerHTML = '';
 
@@ -479,17 +515,21 @@
       hits.forEach(item => {
         if (item.category) categoriesSet.add(item.category);
 
-        // نص الوصف مختصر بسطرين (تقطيع نص)
-        const shortDesc = item.description
-          ? item.description.split(' ').slice(0, 30).join(' ') + '...'
-          : '';
+        // Get short description for preview (max 2 lines)
+        let shortDesc = item.description || '';
+        if (shortDesc.length > 110) {
+          shortDesc = shortDesc.slice(0, 110) + '...';
+        }
+
+        // See more button only if we have extra data
+        const hasExtra = extraProductData[item.name] !== undefined;
 
         const productHTML = `
           <div class="product-card">
             ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image" />` : ''}
-            <h3 class="product-name">${item.name}</h3>
+            <h3 class="product-name" title="${item.name}">${item.name}</h3>
             <p class="product-description">${shortDesc}</p>
-            <button class="see-more-button" data-product='${JSON.stringify(item)}'>See More</button>
+            ${hasExtra ? `<button class="see-more-btn" data-product-name="${item.name}">See more</button>` : ''}
             ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener" class="product-link">Shop Now</a>` : ''}
           </div>
         `;
@@ -497,14 +537,7 @@
       });
 
       renderCategories();
-
-      // أضف حدث لكل زر See More
-      document.querySelectorAll('.see-more-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-          const product = JSON.parse(e.target.getAttribute('data-product'));
-          openModal(product);
-        });
-      });
+      addSeeMoreListeners();
     }
 
     function renderCategories() {
@@ -518,101 +551,110 @@
       allBtn.addEventListener('click', () => {
         activeCategory = null;
         searchInput.value = '';
-        fetchResults();
+        performSearch('');
       });
       categoriesContainer.appendChild(allBtn);
 
       Array.from(categoriesSet).sort().forEach(cat => {
         const btn = document.createElement('button');
         btn.textContent = cat;
-        if (cat === activeCategory) btn.classList.add('active');
+        if (activeCategory === cat) btn.classList.add('active');
         btn.addEventListener('click', () => {
           activeCategory = cat;
-          searchInput.value = '';
-          fetchResults();
+          performSearch(searchInput.value);
         });
         categoriesContainer.appendChild(btn);
       });
     }
 
-    async function fetchResults() {
-      const query = searchInput.value.trim();
+    function performSearch(query) {
+      const filters = activeCategory ? `category:"${activeCategory}"` : '';
 
-      let filters = '';
-      if (activeCategory) {
-        filters = `category:"${activeCategory}"`;
-      }
+      index.search(query, { filters })
+        .then(({ hits }) => {
+          categoriesSet.clear();
 
-      try {
-        const searchOptions = { hitsPerPage: 30 };
-        if (filters) searchOptions.filters = filters;
+          if (hits.length === 0) {
+            resultsContainer.innerHTML = `<p class="no-results">No results found</p>`;
+            return;
+          }
 
-        const result = await index.search(query, searchOptions);
-        renderResults(result.hits);
-      } catch (error) {
-        console.error(error);
-        resultsContainer.innerHTML = `<p class="no-results">Error fetching results</p>`;
-      }
+          renderResults(hits);
+        })
+        .catch(err => {
+          console.error(err);
+          resultsContainer.innerHTML = `<p class="no-results">Error while searching. Please try again.</p>`;
+        });
     }
 
-    searchInput.addEventListener('input', () => {
-      activeCategory = null;
-      fetchResults();
+    // البحث الفوري عند الكتابة
+    searchInput.addEventListener('input', (e) => {
+      performSearch(e.target.value);
     });
 
-    // افتح المودال للمنتج
+    // عرض المنتجات والقوائم مباشرة عند فتح الصفحة
+    performSearch('');
+
+    // المودال وعرض التفاصيل
     const modal = document.getElementById('product-modal');
     const modalCloseBtn = document.getElementById('modal-close');
-    const modalName = document.getElementById('modal-product-name');
+    const modalProductName = document.getElementById('modal-product-name');
     const modalImages = document.getElementById('modal-images');
     const modalDescription = document.getElementById('modal-description');
     const modalAffiliateLink = document.getElementById('modal-affiliate-link');
 
-    function openModal(product) {
-      modalName.textContent = product.name || '';
-      modalDescription.textContent = product.description || '';
-
-      modalImages.innerHTML = '';
-      if (product.additionalImages && product.additionalImages.length > 0) {
-        product.additionalImages.forEach((imgUrl, idx) => {
-          const img = document.createElement('img');
-          img.src = imgUrl;
-          img.alt = product.name + ' image ' + (idx + 1);
-          img.addEventListener('click', () => {
-            modalImages.querySelectorAll('img').forEach(i => i.classList.remove('active'));
-            img.classList.add('active');
-          });
-          modalImages.appendChild(img);
-          if(idx === 0) img.classList.add('active');
+    function addSeeMoreListeners() {
+      const buttons = document.querySelectorAll('.see-more-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const productName = btn.getAttribute('data-product-name');
+          openModal(productName);
         });
-      } else if (product.image) {
-        const img = document.createElement('img');
-        img.src = product.image;
-        img.alt = product.name;
-        img.classList.add('active');
-        modalImages.appendChild(img);
-      }
-
-      modalAffiliateLink.href = product.url || '#';
-      modal.style.display = 'flex';
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      });
     }
 
-    modalCloseBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => {
-      if (e.target === modal) closeModal();
+    function openModal(productName) {
+      const productData = extraProductData[productName];
+      if (!productData) return;
+
+      modalProductName.textContent = productName;
+
+      // عرض الصور الإضافية
+      modalImages.innerHTML = '';
+      productData.extraImages.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = productName + " additional image";
+        modalImages.appendChild(img);
+      });
+
+      // عرض الوصف الكامل
+      modalDescription.textContent = productData.fullDescription;
+
+      // رابط الأفلييت
+      modalAffiliateLink.href = productData.affiliateLink;
+
+      // إظهار المودال
+      modal.style.display = 'flex';
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // منع تمرير الصفحة تحت المودال
+    }
+
+    modalCloseBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
     });
 
-    function closeModal() {
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
+    // إغلاق المودال بالنقر خارج المحتوى
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
 
-    // تحميل نتائج أولية
-    fetchResults();
   </script>
-
 </body>
 </html>
