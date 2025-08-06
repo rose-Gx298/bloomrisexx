@@ -386,19 +386,12 @@
       });
     }
 
-let searchUsed = false; // متغير لتتبع إذا المستخدم بحث أو اختار تصنيف
-
 function performSearch(query) {
   const filters = activeCategory ? `category:"${activeCategory}"` : '';
 
   index.search(query, { filters })
     .then(({ hits }) => {
       categoriesSet.clear();
-
-      if (!searchUsed) {
-        resultsContainer.innerHTML = ''; // لا تعرض شيء إذا المستخدم ما بحث
-        return;
-      }
 
       if (hits.length === 0) {
         resultsContainer.innerHTML = `<p class="no-results">No results found</p>`;
@@ -413,10 +406,14 @@ function performSearch(query) {
     });
 }
 
+// البحث الفوري عند الكتابة
 searchInput.addEventListener('input', (e) => {
-  searchUsed = true;
   performSearch(e.target.value);
 });
+
+// عرض المنتجات والقوائم مباشرة عند فتح الصفحة
+performSearch('');
+
   </script>
 </body>
 </html>
