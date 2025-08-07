@@ -327,16 +327,57 @@
       background-color: #b58d2b;
     }
 
+    /* تعديل أزرار Shop Now و See More */
+
+    /* زر Shop Now في البطاقات */
+    .product-link {
+      display: inline-block;
+      background-color: #1A2421; /* خلفية داكنة متناغمة مع الأخضر الغامق */
+      border: 2px solid #1A422B; /* أخضر غامق */
+      color: #d4af37; /* ذهبي فاخر */
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-family: 'Alice', serif;
+      text-decoration: none;
+      transition: background-color 0.3s ease, box-shadow 0.4s ease;
+      box-shadow: 0 0 6px #1A422B88;
+      cursor: pointer;
+      user-select: none;
+      margin-top: 8px;
+    }
+
+    .product-link:hover {
+      background-color: #1A422B; /* أخضر غامق ملء الخلفية */
+      box-shadow: 0 0 10px 3px #1A422BCC;
+      color: #f5d061; /* ذهبي أفتح عند التمرير */
+    }
+
+    /* زر See More */
+    .see-more-button {
+      background-color: transparent;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 10px 26px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-family: 'Alice', serif;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    .see-more-button:hover {
+      background-color: #d4af37;
+      color: #1A2421;
+    }
+
+    /* تحسين استجابة الهواتف */
     @media (max-width: 480px) {
-      .modal-content {
-        padding: 15px 20px;
-      }
-      .modal-images img {
-        height: 70px;
-      }
-      .modal-shop-button {
-        width: 100%;
-        text-align: center;
+      .product-link, .see-more-button {
+        padding: 14px 30px;
+        font-size: 18px;
       }
     }
   </style>
