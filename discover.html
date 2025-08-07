@@ -478,7 +478,7 @@
       }
 
       // Remove first product from results
-      const filteredHits = hits.slice(1);
+     const filteredHits = hits; // لا تستبعد أي منتج
 
       filteredHits.forEach(item => {
         if (item.category) categoriesSet.add(item.category);
