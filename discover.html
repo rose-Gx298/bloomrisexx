@@ -1,7 +1,3 @@
-
-html
-Copy
-Edit
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -207,51 +203,48 @@ Edit
       margin-left: auto;
       margin-right: auto;
     }
-    
-    /* أزرار المنتجات */
-    .product-buttons {
-      margin-top: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
 
-    .shop-now-btn {
-      background-color: #C9A86B;
-      color: #1A2421;
+    /* تعديل زر See More */
+    .see-more-button {
+      background: none;
       border: none;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 14px;
+      color: #d4af37; /* ذهبي فخم */
       font-weight: bold;
+      font-family: 'Alice', serif;
+      font-size: 14px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      width: fit-content;
-    }
-
-    .shop-now-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(201, 168, 107, 0.4);
-    }
-
-    .see-more-link {
-      color: #C9A86B;
-      font-size: 13px;
-      font-weight: normal;
-      text-decoration: none;
       position: relative;
-      margin-top: 5px;
+      padding: 0;
+      margin-top: 6px;
+      display: inline-block;
     }
 
-    .see-more-link::after {
+    .see-more-button::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: -3px;
-      width: 100%;
-      height: 1px;
-      background-color: #C9A86B;
+      bottom: -4px;
+      width: 30px; /* طول الخط الصغير */
+      height: 2px; /* سمك الخط */
+      background-color: #d4af37; /* ذهبي فخم */
+      border-radius: 1px;
+    }
+
+    /* تعديل زر Shop Now */
+    .modal-shop-button {
+      background-color: #d4af37; /* ذهبي فخم */
+      color: #1A2421; /* أخضر غامق */
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: 'Alice', serif;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+
+    .modal-shop-button:hover {
+      background-color: #b58d2b; /* ذهبي أغمق */
     }
 
     @media (max-width: 768px) {
@@ -291,15 +284,19 @@ Edit
         max-width: 90%;
         height: auto;
       }
-      .product-buttons {
-        align-items: center;
+
+      /* تحسين أزرار الهاتف */
+      .see-more-button {
+        font-size: 16px;
       }
-      .shop-now-btn {
-        font-size: 13px;
-        padding: 8px 16px;
+      .see-more-button::after {
+        width: 40px;
+        height: 3px;
+        bottom: -5px;
       }
-      .see-more-link {
-        font-size: 12px;
+      .modal-shop-button {
+        padding: 14px 30px;
+        font-size: 18px;
       }
     }
 
@@ -386,34 +383,6 @@ Edit
       white-space: pre-wrap;
     }
 
-    .modal-shop-button {
-      display: inline-block;
-      background-color: #d4af37;
-      color: #1a1a1a;
-      padding: 12px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-family: 'Alice', serif;
-      transition: background-color 0.3s;
-    }
-
-    .modal-shop-button:hover {
-      background-color: #b58d2b;
-    }
-
-    @media (max-width: 480px) {
-      .modal-content {
-        padding: 15px 20px;
-      }
-      .modal-images img {
-        height: 70px;
-      }
-      .modal-shop-button {
-        width: 100%;
-        text-align: center;
-      }
-    }
   </style>
 </head>
 <body>
@@ -506,20 +475,13 @@ Edit
           ? item.description.split(' ').slice(0, 30).join(' ') + '...'
           : '';
 
-        // أزرار المنتجات المضافة هنا
-        const productButtonsHTML = `
-          <div class="product-buttons">
-            <button class="shop-now-btn" onclick="window.open('${item.url || '#'}', '_blank')">Shop Now</button>
-            <button class="see-more-button" data-product='${JSON.stringify(item)}'>See More</button>
-          </div>
-        `;
-
         const productHTML = `
           <div class="product-card">
             ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image" />` : ''}
             <h3 class="product-name">${item.name}</h3>
             <p class="product-description">${shortDesc}</p>
-            ${productButtonsHTML}
+            <button class="see-more-button" data-product='${JSON.stringify(item)}'>See More</button>
+            ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener" class="product-link">Shop Now</a>` : ''}
           </div>
         `;
         resultsContainer.insertAdjacentHTML('beforeend', productHTML);
@@ -527,7 +489,6 @@ Edit
 
       renderCategories();
 
-      // أزرار "See More" تنشيط فتح المودال
       document.querySelectorAll('.see-more-button').forEach(button => {
         button.addEventListener('click', (e) => {
           const product = JSON.parse(e.target.getAttribute('data-product'));
@@ -564,88 +525,71 @@ Edit
       });
     }
 
-    async function fetchResults() {
-      const query = searchInput.value.trim();
-
-      let filters = '';
+    function fetchResults() {
+      let params = {};
       if (activeCategory) {
-        filters = `category:"${activeCategory}"`;
+        params.facetFilters = [`category:${activeCategory}`];
       }
 
-      try {
-        const searchOptions = { hitsPerPage: 30 };
-        if (filters) searchOptions.filters = filters;
-
-        const result = await index.search(query, searchOptions);
-        renderResults(result.hits);
-      } catch (error) {
-        console.error(error);
-        resultsContainer.innerHTML = '<p class="no-results">Error fetching results</p>';
-      }
+      index.search(searchInput.value, params).then(({ hits }) => {
+        renderResults(hits);
+      });
     }
-
-    function openModal(product) {
-      const modal = document.getElementById('product-modal');
-      const modalName = document.getElementById('modal-product-name');
-      const modalImages = document.getElementById('modal-images');
-      const modalDescription = document.getElementById('modal-description');
-      const modalAffiliateLink = document.getElementById('modal-affiliate-link');
-
-      modalName.textContent = product.name || 'No Name';
-      modalDescription.textContent = product.description || 'No Description';
-
-      modalImages.innerHTML = '';
-      if (product.images && Array.isArray(product.images)) {
-        product.images.forEach((img, idx) => {
-          const imgElem = document.createElement('img');
-          imgElem.src = img;
-          imgElem.alt = `${product.name} image ${idx+1}`;
-          if(idx === 0) imgElem.classList.add('active');
-          imgElem.addEventListener('click', () => {
-            modalImages.querySelectorAll('img').forEach(i => i.classList.remove('active'));
-            imgElem.classList.add('active');
-            modal.querySelector('.modal-content').style.backgroundImage = `url(${img})`;
-          });
-          modalImages.appendChild(imgElem);
-        });
-      } else if(product.image) {
-        const imgElem = document.createElement('img');
-        imgElem.src = product.image;
-        imgElem.alt = product.name;
-        imgElem.classList.add('active');
-        modalImages.appendChild(imgElem);
-      }
-
-      modalAffiliateLink.href = product.url || '#';
-      modalAffiliateLink.style.display = product.url ? 'inline-block' : 'none';
-
-      modal.style.display = 'flex';
-
-      // Trap focus inside modal for accessibility
-      modal.setAttribute('tabindex', '-1');
-      modal.focus();
-    }
-
-    document.getElementById('modal-close').addEventListener('click', () => {
-      const modal = document.getElementById('product-modal');
-      modal.style.display = 'none';
-    });
-
-    // Close modal on Escape key
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const modal = document.getElementById('product-modal');
-        if (modal.style.display === 'flex') {
-          modal.style.display = 'none';
-        }
-      }
-    });
 
     searchInput.addEventListener('input', () => {
+      activeCategory = null;
       fetchResults();
     });
 
-    // Initial fetch to show products on page load
+    function openModal(product) {
+      const modal = document.getElementById('product-modal');
+      modal.style.display = 'flex';
+
+      document.getElementById('modal-product-name').textContent = product.name || '';
+      document.getElementById('modal-description').textContent = product.description || '';
+      document.getElementById('modal-affiliate-link').href = product.url || '#';
+
+      // تعيين رابط الشراء ولون الزر في المودال
+      const shopBtn = document.getElementById('modal-affiliate-link');
+      shopBtn.textContent = 'اشتري الآن';
+      // لون الزر (معطى في CSS)
+
+      // عرض الصور (إذا موجودة)
+      const imagesContainer = document.getElementById('modal-images');
+      imagesContainer.innerHTML = '';
+      if (product.images && product.images.length > 0) {
+        product.images.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = product.name;
+          img.addEventListener('click', () => {
+            document.querySelectorAll('#modal-images img').forEach(i => i.classList.remove('active'));
+            img.classList.add('active');
+            document.querySelector('.modal-content img.main-image')?.remove();
+            const mainImg = document.createElement('img');
+            mainImg.src = src;
+            mainImg.alt = product.name;
+            mainImg.classList.add('main-image');
+            imagesContainer.parentNode.insertBefore(mainImg, imagesContainer.nextSibling);
+          });
+          imagesContainer.appendChild(img);
+        });
+      } else if(product.image) {
+        const mainImg = document.createElement('img');
+        mainImg.src = product.image;
+        mainImg.alt = product.name;
+        mainImg.classList.add('main-image');
+        imagesContainer.parentNode.insertBefore(mainImg, imagesContainer.nextSibling);
+      }
+    }
+
+    document.getElementById('modal-close').addEventListener('click', () => {
+      document.getElementById('product-modal').style.display = 'none';
+      // إزالة الصورة الكبيرة عند إغلاق المودال
+      document.querySelector('.modal-content img.main-image')?.remove();
+    });
+
+    // استدعاء أول مرة لتحميل المنتجات بدون فلتر
     fetchResults();
 
   </script>
