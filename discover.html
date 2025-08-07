@@ -1,3 +1,7 @@
+
+html
+Copy
+Edit
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,6 +207,53 @@
       margin-left: auto;
       margin-right: auto;
     }
+    
+    /* أزرار المنتجات */
+    .product-buttons {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .shop-now-btn {
+      background-color: #C9A86B;
+      color: #1A2421;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: fit-content;
+    }
+
+    .shop-now-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(201, 168, 107, 0.4);
+    }
+
+    .see-more-link {
+      color: #C9A86B;
+      font-size: 13px;
+      font-weight: normal;
+      text-decoration: none;
+      position: relative;
+      margin-top: 5px;
+    }
+
+    .see-more-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 100%;
+      height: 1px;
+      background-color: #C9A86B;
+    }
+
     @media (max-width: 768px) {
       .product-image {
         max-width: 200px;
@@ -239,6 +290,16 @@
         margin: 0 auto 12px;
         max-width: 90%;
         height: auto;
+      }
+      .product-buttons {
+        align-items: center;
+      }
+      .shop-now-btn {
+        font-size: 13px;
+        padding: 8px 16px;
+      }
+      .see-more-link {
+        font-size: 12px;
       }
     }
 
@@ -445,13 +506,20 @@
           ? item.description.split(' ').slice(0, 30).join(' ') + '...'
           : '';
 
+        // أزرار المنتجات المضافة هنا
+        const productButtonsHTML = `
+          <div class="product-buttons">
+            <button class="shop-now-btn" onclick="window.open('${item.url || '#'}', '_blank')">Shop Now</button>
+            <button class="see-more-button" data-product='${JSON.stringify(item)}'>See More</button>
+          </div>
+        `;
+
         const productHTML = `
           <div class="product-card">
             ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image" />` : ''}
             <h3 class="product-name">${item.name}</h3>
             <p class="product-description">${shortDesc}</p>
-            <button class="see-more-button" data-product='${JSON.stringify(item)}'>See More</button>
-            ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener" class="product-link">Shop Now</a>` : ''}
+            ${productButtonsHTML}
           </div>
         `;
         resultsContainer.insertAdjacentHTML('beforeend', productHTML);
@@ -459,6 +527,7 @@
 
       renderCategories();
 
+      // أزرار "See More" تنشيط فتح المودال
       document.querySelectorAll('.see-more-button').forEach(button => {
         button.addEventListener('click', (e) => {
           const product = JSON.parse(e.target.getAttribute('data-product'));
