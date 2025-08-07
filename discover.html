@@ -481,7 +481,13 @@
      const filteredHits = hits; // لا تستبعد أي منتج
 
       filteredHits.forEach(item => {
-        if (item.category) categoriesSet.add(item.category);
+      if (item.category) {
+  if (Array.isArray(item.category)) {
+    item.category.forEach(cat => categoriesSet.add(cat));
+  } else {
+    categoriesSet.add(item.category);
+  }
+}
 
         const shortDesc = item.description
           ? item.description.split(' ').slice(0, 30).join(' ') + '...'
