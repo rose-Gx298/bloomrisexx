@@ -515,33 +515,36 @@
       });
     }
 
-    function renderCategories() {
-      categoriesContainer.innerHTML = '';
+function renderCategories() {
+  categoriesContainer.innerHTML = '';
 
-      const allBtn = document.createElement('button');
-      allBtn.textContent = 'All Categories';
-      if (activeCategory === null) {
-        allBtn.classList.add('active');
-      }
-      allBtn.addEventListener('click', () => {
-        activeCategory = null;
+  const allBtn = document.createElement('button');
+  allBtn.textContent = 'All Categories';
+  if (activeCategory === null) {
+    allBtn.classList.add('active');
+  }
+  allBtn.addEventListener('click', () => {
+    activeCategory = null;
+    searchInput.value = '';
+    fetchResults();
+  });
+  categoriesContainer.appendChild(allBtn);
+
+  Array.from(categoriesSet)
+    .filter(cat => cat !== 'All Categories') // استبعد "All Categories"
+    .sort()
+    .forEach(cat => {
+      const btn = document.createElement('button');
+      btn.textContent = cat;
+      if (cat === activeCategory) btn.classList.add('active');
+      btn.addEventListener('click', () => {
+        activeCategory = cat;
         searchInput.value = '';
         fetchResults();
       });
-      categoriesContainer.appendChild(allBtn);
-
-      Array.from(categoriesSet).sort().forEach(cat => {
-        const btn = document.createElement('button');
-        btn.textContent = cat;
-        if (cat === activeCategory) btn.classList.add('active');
-        btn.addEventListener('click', () => {
-          activeCategory = cat;
-          searchInput.value = '';
-          fetchResults();
-        });
-        categoriesContainer.appendChild(btn);
-      });
-    }
+      categoriesContainer.appendChild(btn);
+    });
+}
 
     function fetchResults() {
       let params = {};
