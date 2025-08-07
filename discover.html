@@ -204,11 +204,11 @@
       margin-right: auto;
     }
 
-    /* تعديل زر رؤية المزيد */
+    /* See More Button */
     .see-more-button {
       background: none;
       border: none;
-      color: #d4af37; /* ذهبي فخم */
+      color: #d4af37; /* Gold */
       font-weight: bold;
       font-family: 'Alice', serif;
       font-size: 14px;
@@ -224,16 +224,16 @@
       position: absolute;
       left: 0;
       bottom: -4px;
-      width: 30px; /* طول الخط الصغير */
-      height: 2px; /* سمك الخط */
-      background-color: #d4af37; /* ذهبي فخم */
+      width: 30px; /* line length */
+      height: 2px; /* line thickness */
+      background-color: #d4af37; /* gold */
       border-radius: 1px;
     }
 
-    /* تعديل زر اشتري الآن */
+    /* Buy Now Button */
     .modal-shop-button {
-      background-color: #d4af37; /* ذهبي فخم */
-      color: #1A2421; /* أخضر غامق */
+      background-color: #d4af37; /* gold */
+      color: #1A2421; /* dark green */
       padding: 12px 30px;
       border-radius: 8px;
       text-decoration: none;
@@ -247,7 +247,7 @@
     }
 
     .modal-shop-button:hover {
-      background-color: #b58d2b; /* ذهبي أغمق */
+      background-color: #b58d2b; /* darker gold */
       color: #1A2421;
       box-shadow: 0 0 15px #b58d2b;
     }
@@ -275,7 +275,6 @@
         letter-spacing: 3px;
         margin: 20px 0 40px;
       }
-      /* تعديل تنسيق بطاقة المنتج للهواتف */
       .product-card {
         max-width: 100% !important;
         width: 100%;
@@ -289,8 +288,6 @@
         max-width: 90%;
         height: auto;
       }
-
-      /* تحسين أزرار الهاتف */
       .see-more-button {
         font-size: 16px;
       }
@@ -430,7 +427,7 @@
       <h2 id="modal-product-name"></h2>
       <div id="modal-images" class="modal-images"></div>
       <div id="modal-description" class="modal-description"></div>
-      <a id="modal-affiliate-link" href="#" target="_blank" rel="noopener" class="modal-shop-button">اشتري الآن</a>
+      <a id="modal-affiliate-link" href="#" target="_blank" rel="noopener" class="modal-shop-button">Buy Now</a>
     </div>
   </div>
 
@@ -470,7 +467,7 @@
         return;
       }
 
-      // حذف أول منتج من النتائج
+      // Remove first product from results
       const filteredHits = hits.slice(1);
 
       filteredHits.forEach(item => {
@@ -485,8 +482,8 @@
             ${item.image ? `<img src="${item.image}" alt="${item.name}" class="product-image" />` : ''}
             <h3 class="product-name">${item.name}</h3>
             <p class="product-description">${shortDesc}</p>
-            <button class="see-more-button" data-product='${JSON.stringify(item)}'>رؤية المزيد</button>
-            ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener" class="modal-shop-button">اشتري الآن</a>` : ''}
+            <button class="see-more-button" data-product='${JSON.stringify(item)}'>See More</button>
+            ${item.url ? `<a href="${item.url}" target="_blank" rel="noopener" class="modal-shop-button">Buy Now</a>` : ''}
           </div>
         `;
         resultsContainer.insertAdjacentHTML('beforeend', productHTML);
@@ -554,7 +551,6 @@
       document.getElementById('modal-description').textContent = product.description || '';
       document.getElementById('modal-affiliate-link').href = product.url || '#';
 
-      // عرض الصور (إذا موجودة)
       const imagesContainer = document.getElementById('modal-images');
       imagesContainer.innerHTML = '';
       if (product.images && product.images.length > 0) {
@@ -585,13 +581,11 @@
 
     document.getElementById('modal-close').addEventListener('click', () => {
       document.getElementById('product-modal').style.display = 'none';
-      // إزالة الصورة الكبيرة عند إغلاق المودال
       document.querySelector('.modal-content img.main-image')?.remove();
     });
 
-    // استدعاء أول مرة لتحميل المنتجات بدون فلتر
     fetchResults();
-
   </script>
+
 </body>
 </html>
