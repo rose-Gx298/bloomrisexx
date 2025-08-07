@@ -539,9 +539,9 @@
 
     function fetchResults() {
       let params = {};
-      if (activeCategory) {
-        params.facetFilters = [`category:${activeCategory}`];
-      }
+    if (activeCategory && activeCategory !== 'All Categories') {
+params.facetFilters = [[`category:${activeCategory}`]];
+}
 
       index.search(searchInput.value, params).then(({ hits }) => {
         renderResults(hits);
