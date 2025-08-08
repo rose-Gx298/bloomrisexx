@@ -553,8 +553,12 @@ function fetchResults() {
     params.facetFilters = [[`category:${activeCategory}`]];
   }
 
-  index.search(searchInput.value, params).then(({ hits }) => {
+  index.search(searchInput.value, params).then(({ hits, nbHits }) => {
+    console.log('Number of hits:', nbHits);
+    console.log('Hits:', hits);
     renderResults(hits);
+  }).catch(err => {
+    console.error('Algolia search error:', err);
   });
 }
 
