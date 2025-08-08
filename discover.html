@@ -546,16 +546,17 @@ function renderCategories() {
     });
 }
 
-    function fetchResults() {
-      let params = {};
-    if (activeCategory && activeCategory !== 'All Categories') {
-params.facetFilters = [[`category:${activeCategory}`]];
-}
+function fetchResults() {
+  let params = {};
 
-      index.search(searchInput.value, params).then(({ hits }) => {
-        renderResults(hits);
-      });
-    }
+  if (activeCategory && activeCategory !== 'All Categories') {
+    params.facetFilters = [[`category:${activeCategory}`]];
+  }
+
+  index.search(searchInput.value, params).then(({ hits }) => {
+    renderResults(hits);
+  });
+}
 
     searchInput.addEventListener('input', () => {
       activeCategory = null;
